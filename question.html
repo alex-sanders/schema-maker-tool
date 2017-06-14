@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <title>Question Schema Basic Template</title>
+
+  <!--AngularJs and Bootstrap-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!--jQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body class="container">
+  <style>
+      input {
+        margin-top: 1em;
+        height: 10 px;
+        font-size:12px;
+        width:80%;
+      }
+        p {
+          font-family:Courier;
+          font-size:1em;
+      }
+
+      .element {
+        font-style: bold;
+        background-color: #FFFF00;
+      }
+  </style>
+
+
+<h1>Question Schema</h1>
+  <h4>Fill in the textbox below. The JSON-LD and Microdata below will update. Then copy the text and paste the following code into <a href="https://search.google.com/structured-data/testing-tool/u/0/">Google's Stuctured Data Testing Tool</a>!</h4>
+  <!--Required markup input text boxes-->
+  <div class="center-block">
+    <input class="center-block" type="text" ng-model="question" placeholder="Type the question being answered">
+    <input class="center-block" type="text" ng-model="datecreated" placeholder="Date the question was created, DD-MM-20YY">
+    <input class="center-block" type="text" ng-model="answer" placeholder="Type the answer to the question">
+    <br>
+          <select id="author-or-organization" class="center-block">
+            <option value="Select Option">Select Option Below</option>
+            <option value="author">Author</option>
+            <option value="organization">Organization</option>
+          </select>
+    <input class="center-block" type="text" ng-model="author" placeholder="Author or Organization's Name">
+  </div>
+
+<hr>
+  <h4>JSON-LD:</h4>
+  <p>
+      <br>&nbsp; &lt;script type="application/ld+json"&gt;
+      <br>&nbsp; {
+      <br>&nbsp;&nbsp;&nbsp;  "@context": "http://schema.org/",
+      <br>&nbsp;&nbsp;&nbsp;  "@type": "Question",
+      <br>&nbsp;&nbsp;&nbsp;  "text": "<span class="element">{{question}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;  "dateCreated": "<span class="element">{{datecreated}}</span>",
+      <br>&nbsp;&nbsp;&nbsp; "acceptedAnswer": {
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "Answer",
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "text": "<span class="element">{{answer}}</span>",
+      <!-- Oranization or Author -->
+        <br>&nbsp;&nbsp;&nbsp; "<span class="element"><span style="display:none" class="author-itemtype">author</span><span style="display:none" class="organization-itemtype">organization</span></span>": {
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "<span class="element"><span style="display:none" class="author-itemtype">Person</span><span style="display:none" class="organization-itemtype">Organization</span></span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "name": "<span class="element">{{ratingvalue}}</span>",
+        <br>&nbsp;&nbsp;&nbsp;  }
+      </span>
+      <br>&nbsp;&nbsp;&nbsp;  }
+      <br>&nbsp;}
+      <br>&nbsp; &lt;/script&gt;
+  </p>
+
+<hr>
+
+  <h4>Microdata:</h4>
+  <h5><b>Note:</b> This microdata is only a sample for demonstrative purposes. Microdata should be wrapped around elements within your HTML page.</h5>
+  <p>
+  <br>&nbsp; &lt;div itemscope itemtype="http://schema.org/Question"&gt;
+  <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="text"&gt;<span class="element">{{question}}</span>&lt;/span&gt;
+  <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="dateCreated"&gt;<span class="element">{{datecreated}}</span>&lt;/span&gt;
+
+  <!-- Oranization or Author Microdata -->
+      <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="<span class="element"><span style="display:none" class="author-itemtype">author</span><span style="display:none" class="organization-itemtype">organization</span></span>" itemscope itemtype="http://schema.org/<span class="element"><span style="display:none" class="author-itemtype">Person</span><span style="display:none" class="organization-itemtype">Organization</span></span>"&gt;
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="name"&gt;<span class="element">{{name}}</span>&lt;/span&gt;
+  <br>&nbsp;   &lt;/div&gt;
+  </p>
+
+
+  <script>
+  $( document ).ready(function() {
+
+  //Availability -- > Update JSON-LD when option is selected
+    $(function () {
+      $("#author-or-organization").change(function() {
+        var val = $(this).val();
+        if(val === "author") {
+            $(".organization-itemtype").css("display","none");
+            $(".author-itemtype").css("display","");
+        } else if (val === "organization") {
+            $(".author-itemtype").css("display","none");
+            $(".organization-itemtype").css("display","");
+          }
+      });
+
+    });
+
+  });
+  </script>
+
+  <hr>
+
+  <h4>More on Question Schema:</h4>
+  <p>
+    <ul>
+      <li><a href="http://schema.org/Question">Schema.org's Question Documentation</a></li>
+    </ul>
+  </p>
+</body>
+</html>
