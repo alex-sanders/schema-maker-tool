@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <title>Local Business Schema Basic Template</title>
+
+  <!--AngularJs and Bootstrap-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!--jQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body class="container">
+  <style>
+      input {
+        margin-top: 1em;
+        height: 10 px;
+        font-size:12px;
+        width:80%;
+      }
+        p {
+          font-family:Courier;
+          font-size:1em;
+      }
+
+      .element {
+        font-style: bold;
+        background-color: #FFFF00;
+      }
+  </style>
+
+
+<h1>LocalBusiness Schema</h1>
+  <h4>Fill in the textbox below. The JSON-LD and Microdata below will update. Then copy the text and paste the following code into <a href="https://search.google.com/structured-data/testing-tool/u/0/">Google's Stuctured Data Testing Tool</a>!</h4>
+  <h4>Replace "LocalBusiness" in the markup with any more specific item types (ex. Restaurant, HealthClub, Dentist, FinancialService, etc.). You can find more specific item types nested under LocalBusiness in <a href="http://schema.org/docs/full.html">Schema.org's Full Schema Heirarchy</a></h4>
+<!--Required markup input text boxes-->
+  <div class="center-block">
+    <input class="center-block" type="text" ng-model="name" placeholder="Local business' name">
+    <input class="center-block" type="text" ng-model="description" placeholder="Description of the local business">
+    <input class="center-block" type="text" ng-model="telephone" placeholder="Phone #">
+    <input class="center-block" type="text" ng-model="image" placeholder="Product Image URL (include http://)">
+    <!--address -->
+    <input class="center-block" type="text" ng-model="streetaddress" placeholder="Street Address">
+    <input class="center-block" type="text" ng-model="addresslocality" placeholder="State (spelled out)">
+    <input class="center-block" type="text" ng-model="addressregion" placeholder="State (abbreviation)">
+    <input class="center-block" type="text" ng-model="postalcode" placeholder="Zip Code">
+    <input class="center-block" type="text" ng-model="addressCountry" placeholder="Country">
+
+    <!--Payment Type Options -->
+    <input class="center-block" type="text" ng-model="paymentaccepted" placeholder="One form of payment - Cash, credit card, etc.">
+
+    <!--geo-->
+    <div class="geo" style="display:none">
+      <input class="center-block" type="text" ng-model="latitude" placeholder="latitude">
+      <input class="center-block" type="text" ng-model="longitude" placeholder="longitude">
+    </div>
+
+    <!--Aggregate Rating Options - Hidden-->
+    <div class="aggregate-rating" style="display:none">
+        <input class="center-block" type="text" ng-model="ratingvalue" placeholder="Average of all Ratings">
+        <input class="center-block" type="text" ng-model="ratingcount" placeholder="# of Reviews">
+        <input class="center-block" type="text" ng-model="bestrating" placeholder="Top potential rating score">
+    </div>
+
+    <!-- has Map -->
+    <div class="hasmap" style="display:none">
+      <input class="center-block" type="text" ng-model="hasmap" placeholder="Map URL (include http://)">
+    </div>
+
+    <!--opening hours -->
+      <div class="monday" style="display:none">
+        <input class="center-block" type="text" ng-model="opensmonday" placeholder="Opening Hour Monday (military time)">
+        <input class="center-block" type="text" ng-model="closesmonday" placeholder="Closing Hour Monday (military time)">
+      </div>
+      <div class="tuesday" style="display:none">
+        <input class="center-block" type="text" ng-model="openstuesday" placeholder="Opening Hour Tuesday (military time)">
+        <input class="center-block" type="text" ng-model="closestuesday" placeholder="Closing Hour Tuesday (military time)">
+      </div>
+      <div class="wednesday" style="display:none">
+        <input class="center-block" type="text" ng-model="openswednesday" placeholder="Opening Hour Wednesday (military time)">
+        <input class="center-block" type="text" ng-model="closeswednesday" placeholder="Closing Hour Wednesday (military time)">
+      </div>
+      <div class="thursday" style="display:none">
+        <input class="center-block" type="text" ng-model="opensthursday" placeholder="Opening Hour Thursday (military time)">
+        <input class="center-block" type="text" ng-model="closesthursday" placeholder="Closing Hour Thursday (military time)">
+      </div>
+      <div class="friday" style="display:none">
+        <input class="center-block" type="text" ng-model="opensfriday" placeholder="Opening Hour Friday (military time)">
+        <input class="center-block" type="text" ng-model="closesfriday" placeholder="Closing Hour Friday (military time)">
+      </div>
+      <div class="saturday" style="display:none">
+        <input class="center-block" type="text" ng-model="openssaturday" placeholder="Opening Hour Saturday (military time)">
+        <input class="center-block" type="text" ng-model="closessaturday" placeholder="Closing Hour Saturday (military time)">
+      </div>
+      <div class="sunday" style="display:none">
+        <input class="center-block" type="text" ng-model="openssunday" placeholder="Opening Hour Sunday (military time)">
+        <input class="center-block" type="text" ng-model="closessunday" placeholder="Closing Hour Sunday (military time)">
+      </div>
+
+
+<!--buttons for additional itemprops-->
+<br>
+          <div class="row" style="text-align:center">
+              <div class="col-md-3">
+                  <button type="button" id="aggregate-rating" class="btn btn-primary btn-lg">+Aggregate Ratings</button>
+              </div>
+              <div class="col-md-3">
+                <button type="button" id="hasmap" class="btn btn-primary btn-lg">+Has Map</button>
+
+              </div>
+              <div class="col-md-3">
+                <button type="button" id="geo" class="btn btn-primary btn-lg">+Geo Coordinates</button>
+              </div>
+              <div class="col-md-3">
+                <button type="button" id="opening-hours" class="btn btn-primary btn-lg">+Opening Hours</button>
+              </div>
+          </div>
+          <br>
+          <div class="opening-hours-week" style="display:none">
+              <div style="text-align:center">
+                  <button type="button" id="monday" class="btn btn-success btn-md">+Monday Hours</button>
+                  <button type="button" id="tuesday" class="btn btn-success btn-md">+Tuesday Hours</button>
+                  <button type="button" id="wednesday" class="btn btn-success btn-md">+Wednesday Hours</button>
+                  <button type="button" id="thursday" class="btn btn-success btn-md">+Thursday Hours</button>
+                  <button type="button" id="friday" class="btn btn-success btn-md">+Friday Hours</button>
+                  <button type="button" id="saturday" class="btn btn-success btn-md">+Saturday Hours</button>
+                  <button type="button" id="sunday" class="btn btn-success btn-md">+Sunday Hours</button>
+                </div>
+        </div>
+    <hr>
+
+<!--JSON-LD-->
+
+
+<!--Microdata -->
+
+
+<script>
+$( document ).ready(function() {
+
+//geo
+$("#geo").click(function(){
+    $(".geo").css("display","");
+});
+
+//aggregate-rating
+$("#aggregate-rating").click(function(){
+    $(".aggregate-rating").css("display","");
+});
+
+//hasmap
+$("#hasmap").click(function(){
+    $(".hasmap").css("display","");
+});
+
+//#opening-hours #opening-hours-week
+$("#opening-hours").click(function(){
+    $(".opening-hours-week").css("display","");
+});
+
+//Monday
+$("#monday").click(function(){
+    $(".monday").css("display","");
+});
+
+//Tuesday
+$("#tuesday").click(function(){
+    $(".tuesday").css("display","");
+});
+
+//Wednesday
+$("#wednesday").click(function(){
+    $(".wednesday").css("display","");
+});
+
+//Thursday
+$("#thursday").click(function(){
+    $(".thursday").css("display","");
+});
+
+//Friday
+$("#friday").click(function(){
+    $(".friday").css("display","");
+});
+
+//Saturday
+$("#saturday").click(function(){
+    $(".saturday").css("display","");
+});
+
+//Sunday
+$("#sunday").click(function(){
+    $(".sunday").css("display","");
+});
+
+});//doc ready
+</script>

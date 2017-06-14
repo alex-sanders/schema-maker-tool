@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <title>WebSite Schema Basic Template</title>
+
+  <!--AngularJs and Bootstrap-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!--jQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body class="container">
+  <style>
+      input {
+        margin-top: 1em;
+        height: 10 px;
+        font-size:12px;
+        width:80%;
+      }
+        p {
+          font-family:Courier;
+          font-size:1em;
+      }
+
+      .element {
+        font-style: bold;
+        background-color: #FFFF00;
+      }
+  </style>
+
+
+<h1>WebSite Schema: Your Site Name, Sitelinks Searchbox</h1>
+  <h4>Fill in the textbox below. The JSON-LD and Microdata below will update. Then copy the text and paste the following code into <a href="https://search.google.com/structured-data/testing-tool/u/0/">Google's Stuctured Data Testing Tool</a>!</h4>
+  <!--Required markup input text boxes-->
+  <div class="center-block">
+    <input class="center-block" type="text" ng-model="name" placeholder="Your site's name for search results">
+    <input class="center-block" type="text" ng-model="alternatename" placeholder="An alternative name for your site in search results">
+    <input class="center-block" type="text" ng-model="url" placeholder="Domain of website (http:// or https:// included)">
+
+    <div class="sitelinks-searchbox" style="display:none">
+        <input class="center-block" type="text" ng-model="target" placeholder="URL for internal site search before query (ex. https://query.example.com/search?q=)">
+        <input class="center-block" type="text" ng-model="target2" placeholder="Optional: Any characters in the URL for internal site search that occur after the query">
+    </div>
+  </div>
+
+<br>
+<!--buttons-->
+  <div class="row" style="text-align:center">
+      <div class="col-md-12">
+          <button type="button" id="sitelinks-searchbox" class="btn btn-primary btn-lg">+Sitelinks Searchbox</button>
+      </div>
+  </div>
+
+  <hr>
+    <h4>JSON-LD:</h4>
+    <p>
+        <br>&nbsp; &lt;script type="application/ld+json"&gt;
+        <br>&nbsp; {
+        <br>&nbsp;&nbsp;&nbsp;  "@context": "http://schema.org/",
+        <br>&nbsp;&nbsp;&nbsp;  "@type": "WebSite",
+        <br>&nbsp;&nbsp;&nbsp;  "name": "<span class="element">{{name}}</span>",
+        <br>&nbsp;&nbsp;&nbsp;  "alternateName": "<span class="element">{{alternatename}}</span>",
+        <br>&nbsp;&nbsp;&nbsp;  "url": "<span class="element">{{url}}</span>"<span class="sitelinks-searchbox" style="display:none">,
+        <br>&nbsp;&nbsp;&nbsp; "potentialAction": {
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "SearchAction",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "target": "<span class="element">{{target}}</span>{search_term_string}<span class="element">{{target2}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "query-input": "required name=search_term_string"
+          <br>&nbsp;&nbsp;&nbsp;  }
+        </span>
+        <br>&nbsp;}
+        <br>&nbsp; &lt;/script&gt;
+    </p>
+
+    <hr>
+
+<h4>Microdata:</h4>
+<h5><b>Note:</b> This microdata is only a sample for demonstrative purposes. Microdata should be wrapped around elements within your HTML page.</h5>
+
+<p>
+<br>&nbsp; &lt;div itemscope itemtype="http://schema.org/WebSite"&gt;
+<br>&nbsp;&nbsp;&nbsp;  &lt;meta itemprop="url" content="{{url}}" /&gt;
+<br>&nbsp;&nbsp;&nbsp;  &lt;meta itemprop="name" content="{{name}}" /&gt;
+<br>&nbsp;&nbsp;&nbsp;  &lt;meta itemprop="alternativeName" content="{{alternativename}}" /&gt;
+
+<!--sitelinks-searchbox -->
+  <span class="sitelinks-searchbox" style="display:none">
+<br>&nbsp;&nbsp;&nbsp;  &lt;form itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction"&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    &lt;meta itemprop="target" content="{{target}}{search_term_string}{{target2}}"/&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     &lt;input itemprop="query-input" type="text" name="search_term_string" required/&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     &lt;input type="submit"/&gt;
+<br>&nbsp;&nbsp;&nbsp; &lt;/form&gt;
+  </span>
+<br>&nbsp; &lt;/div&gt;
+</p>
+
+<hr>
+
+    <h4>More on WebSite Schema:</h4>
+    <p>
+      <ul>
+        <li><a href="https://developers.google.com/search/docs/data-types/sitename">Google's Your Site Name in Results Structured Data Documentation</a></li>
+        <li><a href="https://developers.google.com/search/docs/data-types/sitelinks-searchbox">Google's Sitelinks Searchbox Structured Data Documentation</a></li>
+        <li><a href="http://schema.org/WebSite">Schema.org's WebSite Documentation</a></li>
+        <li><a href="https://schema.org/docs/actions.html">Schema.org's potentialAction Documentation</a></li>
+      </ul>
+    </p>
+
+    <script>
+        $( document ).ready(function() {
+          //Display Sitelink Searchbox Options
+          $("#sitelinks-searchbox").click(function(){
+              $(".sitelinks-searchbox").css("display","");
+          });
+
+        });
+    </script>
+
+</body>
+</html>
