@@ -41,16 +41,16 @@
   <h4>Fill in the textbox below. The JSON-LD and Microdata below will update. Then copy the text and paste the following code into <a href="https://search.google.com/structured-data/testing-tool/u/0/">Google's Stuctured Data Testing Tool</a>!</h4>
   <!--Required markup input text boxes-->
   <div class="center-block">
-    <input class="center-block" type="text" ng-model="question" placeholder="Type the question being answered">
+    <input class="center-block" type="text" ng-model="question" placeholder="Question being answered">
     <input class="center-block" type="text" ng-model="datecreated" placeholder="Date the question was created, DD-MM-20YY">
-    <input class="center-block" type="text" ng-model="answer" placeholder="Type the answer to the question">
+    <input class="center-block" type="text" ng-model="answer" placeholder="Answer to the question">
     <br>
           <select id="author-or-organization" class="center-block">
             <option value="Select Option">Select Option Below</option>
             <option value="author">Author</option>
             <option value="organization">Organization</option>
           </select>
-    <input class="center-block" type="text" ng-model="author" placeholder="Author or Organization's Name">
+    <input class="center-block" type="text" ng-model="name" placeholder="Author or Organization's Name">
   </div>
 
 <hr>
@@ -68,7 +68,7 @@
       <!-- Oranization or Author -->
         <br>&nbsp;&nbsp;&nbsp; "<span class="element"><span style="display:none" class="author-itemtype">author</span><span style="display:none" class="organization-itemtype">organization</span></span>": {
           <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "<span class="element"><span style="display:none" class="author-itemtype">Person</span><span style="display:none" class="organization-itemtype">Organization</span></span>",
-          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "name": "<span class="element">{{ratingvalue}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "name": "<span class="element">{{name}}</span>"
         <br>&nbsp;&nbsp;&nbsp;  }
       </span>
       <br>&nbsp;&nbsp;&nbsp;  }
