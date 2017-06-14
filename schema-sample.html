@@ -39,12 +39,15 @@
 
 <h1>Product Schema</h1>
   <h4>Fill in the textbox below. The JSON-LD and Microdata below will update. Then copy the text and paste the following code into <a href="https://search.google.com/structured-data/testing-tool/u/0/">Google's Stuctured Data Testing Tool</a>!</h4>
-      <!--text boxes-->
-      <input class="center-block" type="text" ng-model="name" placeholder="Product Name">
-      <input class="center-block" type="text" ng-model="image" placeholder="Product Image URL (include http://)">
-      <input class="center-block" type="text" ng-model="description" placeholder="Product Description">
-      <input class="center-block" type="text" ng-model="brand" placeholder="Brand Name">
-      <input class="center-block" type="text" ng-model="price" placeholder="Product Price (# only, no $ sign)">
+      <!--Required markup input text boxes-->
+      <div class="center-block">
+        <input class="center-block" type="text" ng-model="name" placeholder="Product Name">
+        <input class="center-block" type="text" ng-model="image" placeholder="Product Image URL (include http://)">
+        <input class="center-block" type="text" ng-model="description" placeholder="Product Description">
+        <input class="center-block" type="text" ng-model="brand" placeholder="Brand Name">
+        <input class="center-block" type="text" ng-model="price" placeholder="Product Price (# only, no $ sign)">
+      </div>
+
       <!--Availability Options - Hidden-->
       <div class="availability-options" style="display:none">
         <br>
