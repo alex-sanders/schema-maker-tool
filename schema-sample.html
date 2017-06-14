@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <title>Product Schema Basic Template</title>
+
+  <!--AngularJs and Bootstrap-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!--jQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body class="container">
+  <style>
+      input {
+        margin-top: 1em;
+        height: 10 px;
+        font-size:12px;
+        width:80%;
+      }
+        p {
+          font-family:Courier;
+          font-size:1em;
+      }
+
+      .element {
+        font-style: bold;
+        background-color: #FFFF00;
+      }
+  </style>
+
+
+<h1>Product Schema</h1>
+  <h4>Fill in the textbox below. The JSON-LD and Microdata below will update. Then copy the text and paste the following code into <a href="https://search.google.com/structured-data/testing-tool/u/0/">Google's Stuctured Data Testing Tool</a>!</h4>
+      <!--text boxes-->
+      <input class="center-block" type="text" ng-model="name" placeholder="Product Name">
+      <input class="center-block" type="text" ng-model="image" placeholder="Product Image URL (include http://)">
+      <input class="center-block" type="text" ng-model="description" placeholder="Product Description">
+      <input class="center-block" type="text" ng-model="brand" placeholder="Brand Name">
+      <input class="center-block" type="text" ng-model="price" placeholder="Product Price (# only, no $ sign)">
+      <!--Availability Options - Hidden-->
+      <div class="availability-options" style="display:none">
+        <br>
+            <select id="availability-block" class="center-block">
+              <option value="Select Option">Select Option Below</option>
+              <option value="Discontinued">Discontinued</option>
+              <option value="InStock">InStock</option>
+              <option value="InStoreOnly">InStoreOnly</option>
+              <option value="LimitedAvailability">LimitedAvailability</option>
+              <option value="OnlineOnly">OnlineOnly</option>
+              <option value="OutOfStock">OutOfStock</option>
+              <option value="PreOrder">PreOrder</option>
+              <option value="PreSale">PreSale</option>
+              <option value="SoldOut">SoldOut</option>
+            </select>
+      </div>
+      <!--Aggregate Rating Options - Hidden-->
+      <div class="aggregate-rating" style="display:none">
+          <input class="center-block" type="text" ng-model="ratingvalue" placeholder="Average of all Ratings">
+          <input class="center-block" type="text" ng-model="ratingcount" placeholder="# of Reviews">
+          <input class="center-block" type="text" ng-model="bestrating" placeholder="Top potential rating score">
+      </div>
+      <!--Price Valid Until Options - Hidden-->
+      <div class="sale" style="display:none">
+          <input class="center-block" type="text" ng-model="month" placeholder="Price valid until Month (in ##, include zero for single digit months)">
+          <input class="center-block" type="text" ng-model="date" placeholder="Price valid until Day (in ##, include zero for single digit days)">
+          <input class="center-block" type="text" ng-model="year" placeholder="Price valud until Year (ex. 2017)">
+      </div>
+
+      <!-- Item Condition Options - Hidden-->
+      <div class="condition-options" style="display:none">
+        <br>
+            <select id="condition-block" class="center-block">
+              <option value="Select Option">Select Option Below</option>
+              <option value="DamagedCondition">DamagedCondition</option>
+              <option value="NewCondition">NewCondition</option>
+              <option value="RefurbishedCondition">RefurbishedCondition</option>
+              <option value="UsedCondition">UsedCondition</option>
+            </select>
+      </div>
+
+
+      <br>
+      <!--buttons for additional itemprops-->
+      <div class="row" style="text-align:center">
+          <div class="col-md-3">
+              <button type="button" id="availability" class="btn btn-primary btn-lg">+Availability</button>
+          </div>
+          <div class="col-md-3">
+              <button type="button" id="aggregate-rating-button" class="btn btn-primary btn-lg">+Aggregate Rating</button>
+          </div>
+          <div class="col-md-3">
+              <button type="button" id="sale-button" class="btn btn-primary btn-lg">+Sale</button>
+          </div>
+          <div class="col-md-3">
+              <button type="button" id="condition-button" class="btn btn-primary btn-lg">+Item Condition</button>
+          </div>
+
+      </div>
+<hr>
+
+
+<h4>JSON-LD:</h4>
+<p>
+    <br>&nbsp; &lt;script type="application/ld+json"&gt;
+    <br>&nbsp; {
+    <br>&nbsp;&nbsp;&nbsp;  "@context": "http://schema.org/",
+    <br>&nbsp;&nbsp;&nbsp;  "@type": "Product",
+    <br>&nbsp;&nbsp;&nbsp;  "name": "<span class="element">{{name}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "image": "<span class="element">{{image}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "description": "<span class="element">{{description}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "brand": {
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "@type": "Thing",
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "name": "<span class="element">{{brand}}</span>"
+    <br>&nbsp;&nbsp;&nbsp;  },
+      <!-- Aggregate Rating -->
+      <span style="display:none" class="aggregate-rating">
+        <br>&nbsp;&nbsp;&nbsp; "aggregateRating": {
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "AggregateRating",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "ratingValue": "<span class="element">{{ratingvalue}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "reviewCount": "<span class="element">{{ratingcount}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "bestRating": "<span class="element">{{bestrating}}</span>"
+        <br>&nbsp;&nbsp;&nbsp;  },
+      </span>
+
+    <br>&nbsp;&nbsp;&nbsp;  "offers": {
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "@type": "Offer",
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "priceCurrency": "USD",
+
+      <!--Availability-->
+      <span style="display:none" class="Discontinued"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/Discontinued</span>",</span>
+      <span style="display:none" class="InStock"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/InStock</span>",</span>
+      <span style="display:none" class="InStoreOnly"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/InStoreOnly</span>",</span>
+      <span style="display:none" class="LimitedAvailability"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/LimitedAvailability</span>",</span>
+      <span style="display:none" class="OnlineOnly"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/OnlineOnly</span>",</span>
+      <span style="display:none" class="OutOfStock"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/OutOfStock</span>",</span>
+      <span style="display:none" class="PreOrder"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/PreOrder</span>",</span>
+      <span style="display:none" class="PreSale"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/PreSale</span>",</span>
+      <span style="display:none" class="SoldOut"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/SoldOut</span>",</span>
+
+      <!--Price Valid Until -->
+      <span style="display:none" class="sale"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "priceValidUntil": "<span class="element">{{year}}-{{month}}-{{date}}</span>",</span>
+
+      <!--Condition-->
+      <span style="display:none" class="DamagedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "itemCondition": "<span class="element">http://schema.org/DamagedCondition</span>",</span>
+      <span style="display:none" class="NewCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "itemCondition": "<span class="element">http://schema.org/NewCondition</span>",</span>
+      <span style="display:none" class="RefurbishedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "itemCondition": "<span class="element">http://schema.org/RefurbishedCondition</span>",</span>
+      <span style="display:none" class="UsedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "itemCondition": "<span class="element">http://schema.org/UsedCondition</span>",</span>
+
+
+
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "price": "<span class="element">{{price}}</span>"
+    <br>&nbsp;&nbsp;&nbsp;  }
+    <br>&nbsp;}
+    <br>&nbsp; &lt;/script&gt;
+</p>
+
+<hr>
+
+<h4>Microdata:</h4>
+<p>
+<br>&nbsp; &lt;div itemscope itemtype="http://schema.org/Product"&gt;
+<br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="brand"&gt;<span class="element">{{brand}}</span>&lt;/span&gt;
+<br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="name"&gt;<span class="element">{{name}}</span>&lt;/span&gt;
+<br>&nbsp;&nbsp;&nbsp;   &lt;img itemprop="image" src="<span class="element">{{image}}</span>"/&gt;
+<br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="description"&gt;<span class="element">{{description}}</span>
+<br>&nbsp;&nbsp;&nbsp;   &lt;/span&gt;
+<!--Aggregate Rating-->
+<span style="display:none" class="aggregate-rating">
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"&gt;
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="ratingValue"&gt;<span class="element">{{ratingvalue}}</span>&lt;/span&gt; stars, based on
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="reviewCount"&gt;<span class="element">{{ratingcount}}</span>&lt;/span&gt; reviews
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="bestRating" content="<span class="element">{{bestrating}}"</span> /&gt;
+    <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+</span>
+
+
+<br>&nbsp;&nbsp;&nbsp;    &lt;span itemprop="offers" itemscope itemtype="http://schema.org/Offer"&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     &lt;meta itemprop="priceCurrency" content="USD" /&gt;
+<!-- Avalability-->
+<span style="display:none" class="Discontinued"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/Discontinued</span>" /&gt;</span>
+<span style="display:none" class="InStock"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/InStock</span>" /&gt;</span>
+<span style="display:none" class="InStoreOnly"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/InStoreOnly</span>" /&gt;</span>
+<span style="display:none" class="LimitedAvailability"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/LimitedAvailability</span>" /&gt;</span>
+<span style="display:none" class="OnlineOnly"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/OnlineOnly</span>" /&gt;</span>
+<span style="display:none" class="OutOfStock"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/OutOfStock</span>" /&gt;</span>
+<span style="display:none" class="PreOrder"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/PreOrder</span>" /&gt;</span>
+<span style="display:none" class="PreSale"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/PreSale</span>" /&gt;</span>
+<span style="display:none" class="SoldOut"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/SoldOut</span>" /&gt;</span>
+
+<!--Price Valid Until -->
+<span style="display:none" class="sale"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;span itemprop="priceValidUntil" content="<span class="element">{{year}}-{{month}}-{{date}}</span>&gt;Sale Ends: {{month}}-{{date}}-{{year}}&lt;span&gt;</span>
+
+<!-- Condition -->
+<span style="display:none" class="DamagedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="itemCondition" content="<span class="element">http://schema.org/DamagedCondition</span>" &gt;</span>
+<span style="display:none" class="NewCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="itemCondition" content="<span class="element">http://schema.org/NewCondition</span>" &gt;</span>
+<span style="display:none" class="RefurbishedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="itemCondition" content="<span class="element">http://schema.org/RefurbishedCondition</span>" &gt;</span>
+<span style="display:none" class="UsedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="itemCondition" content=""<span class="element">http://schema.org/UsedCondition</span>" &gt;</span>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     $&lt;span itemprop="price"&gt;<span class="element">{{price}}</span>&lt;/span&gt;
+<br>&nbsp;&nbsp;&nbsp;     &lt;/span&gt;
+<br>&nbsp;   &lt;/div&gt;
+<p>
+
+
+<hr>
+
+<h4>More on Product Schema:</h4>
+<p>
+  <ul>
+    <li><a href="https://developers.google.com/search/docs/data-types/products">Google's Product Structured Data Documentation</a></li>
+    <li><a href="http://schema.org/Product">Schema.org's Product Documentation</a></li>
+  </ul>
+</p>
+
+<script>
+$( document ).ready(function() {
+
+  //Display Availability Options
+  $("#availability").click(function(){
+      $(".availability-options").css("display","");
+  });
+
+//Availability -- > Update JSON-LD when option is selected
+  $(function () {
+    $("#availability-block").change(function() {
+      var val = $(this).val();
+      if(val === "Discontinued") {
+          $(".Discontinued").css("display","");
+      } else if (val === "InStock") {
+          $(".InStock").css("display","");
+        } else if (val === "InStoreOnly") {
+            $(".InStoreOnly").css("display","");
+          } else if (val === "LimitedAvailability") {
+              $(".LimitedAvailability").css("display","");
+            } else if (val === "OnlineOnly") {
+                $(".OnlineOnly").css("display","");
+              } else if (val === "OutOfStock") {
+                  $(".OutOfStock").css("display","");
+                } else if (val === "PreOrder") {
+                    $(".PreOrder").css("display","");
+                  } else if (val === "PreSale") {
+                      $(".PreSale").css("display","");
+                    } else if (val === "SoldOut") {
+                        $(".SoldOut").css("display","");
+                      }
+    });
+  });
+
+//Aggregate rating
+$("#aggregate-rating-button").click(function(){
+    $(".aggregate-rating").css("display","");
+});
+
+//Price Valid Until/Sale
+$("#sale-button").click(function(){
+    $(".sale").css("display","");
+  });
+
+
+//Item Condition
+$("#condition-button").click(function(){
+    $(".condition-options").css("display","");
+});
+
+//Condition -- > Update JSON-LD when option is selected
+  $(function () {
+    $("#condition-block").change(function() {
+      var val = $(this).val();
+      if(val === "DamagedCondition") {
+          $(".DamagedCondition").css("display","");
+      } else if (val === "NewCondition") {
+          $(".NewCondition").css("display","");
+        } else if (val === "RefurbishedCondition") {
+            $(".RefurbishedCondition").css("display","");
+          } else if (val === "UsedCondition") {
+              $(".UsedCondition").css("display","");
+            }
+});
+});
+});
+
+
+
+</script>
+</body>
+</html>
