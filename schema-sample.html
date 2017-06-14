@@ -86,9 +86,17 @@
             </select>
       </div>
 
+      <!-- SKU, GS1, and MPN - Hidden-->
+      <span class="sku" style="display:none"><input class="center-block" type="text" ng-model="sku" placeholder="SKU #"></span>
+      <span class="gtin8" style="display:none"><input class="center-block" type="text" ng-model="gtin8" placeholder="GTIN-8 # - Global Trade Item Number, also known as EAN/UCC-8 or 8-digit EAN"></span>
+      <span class="gtin13" style="display:none"><input class="center-block" type="text" ng-model="gtin13" placeholder="GTIN-13 # - 13-digit ISBN codes and EAN UCC-13"></span>
+      <span class="gtin14" style="display:none"><input class="center-block" type="text" ng-model="gtin14" placeholder="GTIN-14 # - 14-digit ISBN codes and EAN UCC-14"></span>
+      <span class="mpn" style="display:none"><input class="center-block" type="text" ng-model="mpn" placeholder="MPN # - The Manufacturer Part Number"></span>
+
 
       <br>
-      <!--buttons for additional itemprops-->
+
+<!--buttons for additional itemprops-->
       <div class="row" style="text-align:center">
           <div class="col-md-3">
               <button type="button" id="availability" class="btn btn-primary btn-lg">+Availability</button>
@@ -102,7 +110,24 @@
           <div class="col-md-3">
               <button type="button" id="condition-button" class="btn btn-primary btn-lg">+Item Condition</button>
           </div>
-
+      </div>
+      <br>
+      <div class="row" style="text-align:center">
+          <div class="col-md-2 col-md-offset-1">
+              <button type="button" id="sku" class="btn btn-success btn-lg">+sku</button>
+          </div>
+          <div class="col-md-2">
+              <button type="button" id="gtin8" class="btn btn-success btn-lg">+gtin8</button>
+          </div>
+          <div class="col-md-2">
+              <button type="button" id="gtin13" class="btn btn-success btn-lg">+gtin13</button>
+          </div>
+          <div class="col-md-2">
+              <button type="button" id="gtin14" class="btn btn-success btn-lg">+gtin14</button>
+          </div>
+          <div class="col-md-2">
+              <button type="button" id="mpn" class="btn btn-success btn-lg">+mpn</button>
+          </div>
       </div>
 <hr>
 
@@ -116,6 +141,13 @@
     <br>&nbsp;&nbsp;&nbsp;  "name": "<span class="element">{{name}}</span>",
     <br>&nbsp;&nbsp;&nbsp;  "image": "<span class="element">{{image}}</span>",
     <br>&nbsp;&nbsp;&nbsp;  "description": "<span class="element">{{description}}</span>",
+    <!--SKU, GTIN, MPU #-->
+    <span style="display:none" class="sku"><br>&nbsp;&nbsp;&nbsp; "sku": "<span class="element">{{sku}}</span>",</span>
+    <span style="display:none" class="gtin8"><br>&nbsp;&nbsp;&nbsp; "gtin8": "<span class="element">{{gtin8}}</span>",</span>
+    <span style="display:none" class="gtin13"><br>&nbsp;&nbsp;&nbsp; "gtin13": "<span class="element">{{gtin13}}</span>",</span>
+    <span style="display:none" class="gtin14"><br>&nbsp;&nbsp;&nbsp; "gtin14": "<span class="element">{{gtin14}}</span>",</span>
+    <span style="display:none" class="mpn"><br>&nbsp;&nbsp;&nbsp; "mpn": "<span class="element">{{mpn}}</span>",</span>
+
     <br>&nbsp;&nbsp;&nbsp;  "brand": {
     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "@type": "Thing",
     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "name": "<span class="element">{{brand}}</span>"
@@ -129,6 +161,7 @@
           <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "bestRating": "<span class="element">{{bestrating}}</span>"
         <br>&nbsp;&nbsp;&nbsp;  },
       </span>
+
 
     <br>&nbsp;&nbsp;&nbsp;  "offers": {
     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "@type": "Offer",
@@ -154,8 +187,6 @@
       <span style="display:none" class="RefurbishedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "itemCondition": "<span class="element">http://schema.org/RefurbishedCondition</span>",</span>
       <span style="display:none" class="UsedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "itemCondition": "<span class="element">http://schema.org/UsedCondition</span>",</span>
 
-
-
     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "price": "<span class="element">{{price}}</span>"
     <br>&nbsp;&nbsp;&nbsp;  }
     <br>&nbsp;}
@@ -165,6 +196,7 @@
 <hr>
 
 <h4>Microdata:</h4>
+<h5><b>Note:</b> This microdata is only a sample for demonstrative purposes. Microdata should be wrapped around elements within your HTML page.</h5>
 <p>
 <br>&nbsp; &lt;div itemscope itemtype="http://schema.org/Product"&gt;
 <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="brand"&gt;<span class="element">{{brand}}</span>&lt;/span&gt;
@@ -172,6 +204,13 @@
 <br>&nbsp;&nbsp;&nbsp;   &lt;img itemprop="image" src="<span class="element">{{image}}</span>"/&gt;
 <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="description"&gt;<span class="element">{{description}}</span>
 <br>&nbsp;&nbsp;&nbsp;   &lt;/span&gt;
+<!--SKU, GTIN, MPU #-->
+<span style="display:none" class="sku"><br>&nbsp;&nbsp;&nbsp; &lt;meta itemprop="sku" content="<span class="element">{{sku}}</span>" /&gt;</span>
+<span style="display:none" class="gtin8"><br>&nbsp;&nbsp;&nbsp; &lt;meta itemprop="gtin8" content="<span class="element">{{gtin8}}</span>" /&gt;</span>
+<span style="display:none" class="gtin13"><br>&nbsp;&nbsp;&nbsp; &lt;meta itemprop="gtin13" content="<span class="element">{{gtin13}}</span>" /&gt;</span>
+<span style="display:none" class="gtin14"><br>&nbsp;&nbsp;&nbsp; &lt;meta itemprop="gtin14" content="<span class="element">{{gtin14}}</span>" /&gt;</span>
+<span style="display:none" class="mpn"><br>&nbsp;&nbsp;&nbsp; &lt;meta itemprop="mpn" content="<span class="element">{{mpn}}</span>" /&gt;</span>
+
 <!--Aggregate Rating-->
 <span style="display:none" class="aggregate-rating">
     <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"&gt;
@@ -199,10 +238,10 @@
 <span style="display:none" class="sale"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;span itemprop="priceValidUntil" content="<span class="element">{{year}}-{{month}}-{{date}}</span>&gt;Sale Ends: {{month}}-{{date}}-{{year}}&lt;span&gt;</span>
 
 <!-- Condition -->
-<span style="display:none" class="DamagedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="itemCondition" content="<span class="element">http://schema.org/DamagedCondition</span>" &gt;</span>
-<span style="display:none" class="NewCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="itemCondition" content="<span class="element">http://schema.org/NewCondition</span>" &gt;</span>
-<span style="display:none" class="RefurbishedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="itemCondition" content="<span class="element">http://schema.org/RefurbishedCondition</span>" &gt;</span>
-<span style="display:none" class="UsedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="itemCondition" content=""<span class="element">http://schema.org/UsedCondition</span>" &gt;</span>
+<span style="display:none" class="DamagedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="itemCondition" content="<span class="element">http://schema.org/DamagedCondition</span>" /&gt;</span>
+<span style="display:none" class="NewCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="itemCondition" content="<span class="element">http://schema.org/NewCondition</span>" /&gt;</span>
+<span style="display:none" class="RefurbishedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="itemCondition" content="<span class="element">http://schema.org/RefurbishedCondition</span>" /&gt;</span>
+<span style="display:none" class="UsedCondition"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="itemCondition" content=""<span class="element">http://schema.org/UsedCondition</span>" /&gt;</span>
 
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     $&lt;span itemprop="price"&gt;<span class="element">{{price}}</span>&lt;/span&gt;
 <br>&nbsp;&nbsp;&nbsp;     &lt;/span&gt;
@@ -285,6 +324,24 @@ $("#condition-button").click(function(){
             }
 });
 });
+
+//SKU, GTIN, MPN
+$("#sku").click(function(){
+    $(".sku").css("display","");
+  });
+  $("#gtin8").click(function(){
+      $(".gtin8").css("display","");
+    });
+    $("#gtin13").click(function(){
+        $(".gtin13").css("display","");
+      });
+      $("#gtin14").click(function(){
+          $(".gtin14").css("display","");
+        });
+        $("#mpn").click(function(){
+            $(".mpn").css("display","");
+          });
+
 });
 
 
