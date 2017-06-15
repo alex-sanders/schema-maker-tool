@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <title>Event Schema Basic Template</title>
+
+  <!--AngularJs and Bootstrap-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!--jQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body class="container">
+  <style>
+      input {
+        margin-top: 1em;
+        height: 10 px;
+        font-size:12px;
+        width:80%;
+      }
+        p {
+          font-family:Courier;
+          font-size:1em;
+      }
+
+      .element {
+        font-style: bold;
+        background-color: #FFFF00;
+      }
+  </style>
+
+
+<h1>Event Schema</h1>
+<h4>Fill in the textbox below. The JSON-LD and Microdata below will update. Then copy the text and paste the following code into <a href="https://search.google.com/structured-data/testing-tool/u/0/">Google's Stuctured Data Testing Tool</a>!</h4>
+<!--Required markup input text boxes-->
+  <div class="center-block">
+    <input class="center-block" type="text" ng-model="name" placeholder="Event's name">
+    <input class="center-block" type="text" ng-model="description" placeholder="Description of event">
+    <input class="center-block" type="text" ng-model="image" placeholder="Image of event">
+    <input class="center-block" type="text" ng-model="url" placeholder="URL for event">
+    <input class="center-block" type="text" ng-model="yearstart" placeholder="Year event starts (ex. 2017)">
+    <input class="center-block" type="text" ng-model="monthstart" placeholder="Month event starts (ex. 01)">
+    <input class="center-block" type="text" ng-model="daystart" placeholder="Day event starts (ex. 18)">
+    <input class="center-block" type="text" ng-model="hourstart" placeholder="Hour event starts (millitary hour)">
+    <input class="center-block" type="text" ng-model="minutestart" placeholder="Minute of the hour event starts">
+    <span style="display:none" class="enddate">
+        <input class="center-block" type="text" ng-model="yearend" placeholder="The year in which the event ends (20XX)">
+        <input class="center-block" type="text" ng-model="monthend" placeholder="Month event ends (ex. 01)">
+        <input class="center-block" type="text" ng-model="dayend" placeholder="Day event ends (ex. 21)">
+        <input class="center-block" type="text" ng-model="hourend" placeholder="Hour event ends (millitary hour)">
+        <input class="center-block" type="text" ng-model="minuteend" placeholder="Minute of the hour event ends">
+    </span>
+     <input class="center-block" type="text" ng-model="namelocation" placeholder="Location's Name (ex. PNC Park)">
+    <input class="center-block" type="text" ng-model="streetaddress" placeholder="Street Address">
+    <input class="center-block" type="text" ng-model="addresslocality" placeholder="State (spelled out)">
+    <input class="center-block" type="text" ng-model="addressregion" placeholder="State (abbreviation)">
+    <input class="center-block" type="text" ng-model="postalcode" placeholder="Zip Code">
+    <input class="center-block" type="text" ng-model="addresscountry" placeholder="Country">
+
+    <!-- Person or Performing Group -->
+      <div class="performer" style="display:none">
+        <br>
+            <select id="performeroptions" class="center-block" style="width:70%">
+              <option value="Select Option">Select Performer Option Below:</option>
+              <option value="person">Person</option>
+              <option value="performinggroup">Performing Group</option>
+            </select>
+        <input class="center-block" type="text" ng-model="nameperformer" placeholder="Name of Performer or Performing Group">
+
+      </div>
+
+      <!--Offers-->
+  <div class="offers" style="display:none">
+      <input class="center-block" type="text" ng-model="price" placeholder="Event Price (# only, no $ sign)">
+      <input class="center-block" type="text" ng-model="urloffer" placeholder="URL's offer">
+
+      <!--Price Valid Until Options - Hidden-->
+      <div class="sale" style="display:none">
+          <input class="center-block" type="text" ng-model="yearvalid" placeholder="Price valud until Year (ex. 2017)">
+          <input class="center-block" type="text" ng-model="monthvalid" placeholder="Price valid until Month (in ##, include zero for single digit months)">
+          <input class="center-block" type="text" ng-model="datevalid" placeholder="Price valid until Day (in ##, include zero for single digit days)">
+      </div>
+      <!--Availability Options - Hidden-->
+      <div class="availability-options" style="display:none" style="width:70%">
+        <br>
+            <select id="availability-block" class="center-block">
+              <option value="Select Option">Select Option Below:</option>
+              <option value="Discontinued">Discontinued</option>
+              <option value="InStock">InStock</option>
+              <option value="InStoreOnly">InStoreOnly</option>
+              <option value="LimitedAvailability">LimitedAvailability</option>
+              <option value="OnlineOnly">OnlineOnly</option>
+              <option value="OutOfStock">OutOfStock</option>
+              <option value="PreOrder">PreOrder</option>
+              <option value="PreSale">PreSale</option>
+              <option value="SoldOut">SoldOut</option>
+            </select>
+      </div>
+
+ </div>
+  </div>
+
+<!--buttons-->
+<br>
+  <div style="text-align:center">
+    <button type="button" id="enddate" class="btn btn-info btn-lg">+End Date</button>
+    <button type="button" id="performer" class="btn btn-info btn-lg">+Performer(s)</button>
+    <button type="button" id="offers" class="btn btn-info btn-lg">+Offers/Price</button>
+    
+    <div class="offers" style="display:none">
+      <br><button type="button" id="sale" class="btn btn-default btn-lg">+Price Valid Until</button>
+      <button type="button" id="availability" class="btn btn-default btn-lg">+Availability</button>
+    </div>
+  </div>
+
+<hr>
+<!--JSON-LD-->
+<h4>JSON-LD</h4>
+<h5>Note: If you are closed on Sunday or weekends, you will have to remove a comma after the last OpeningHoursSpecification's object.</h5>
+<p>
+    <br>&nbsp; &lt;script type="application/ld+json"&gt;
+    <br>&nbsp; {
+    <br>&nbsp;&nbsp;&nbsp;  "@context": "http://schema.org/",
+    <br>&nbsp;&nbsp;&nbsp;  "@type": "Event",
+    <br>&nbsp;&nbsp;&nbsp;  "name": "<span class="element">{{name}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "description": "<span class="element">{{description}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "image": "<span class="element">{{image}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "url": "<span class="element">{{url}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "startDate": "<span class="element">{{yearstart}}-{{monthstart}}-{{daystart}}T{{hourstart}}:{{minutestart}}</span>",
+    <span style="display:none" class="enddate"><br>&nbsp;&nbsp;&nbsp;  "endDate": "<span class="element">{{yearend}}-{{monthend}}-{{dayend}}</span>",</span>
+    <br>&nbsp;&nbsp;&nbsp;  "location": {
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "Place",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "name": "<span class="element">{{namelocation}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "address": {
+                  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "PostalAddress",
+                  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "streetAddress": "<span class="element">{{streetaddress}}</span>",
+                  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "addressLocality": "<span class="element">{{addresslocality}}</span>",
+                  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "addressRegion": "<span class="element">{{addressregion}}</span>",
+                  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  "postalCode": "<span class="element">{{postalcode}}</span>",
+                  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "addressCountry": "<span class="element">{{addresscountry}}</span>"
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  }
+        <br>&nbsp;&nbsp;&nbsp;  }<span style="display:none" class="performer">,
+    <br>&nbsp;&nbsp;&nbsp;  "performer": {
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "<span style="display:none" class="person"><span class="element">Person</span></span><span style="display:none" class="performinggroup"><span class="element">PerformingGroup</span></span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "name": "<span class="element">{{nameperformer}}</span>"
+    <br>&nbsp;&nbsp;&nbsp;  }</span><span style="display:none" class="offers">,
+    <br>&nbsp;&nbsp;&nbsp;  "offers": {
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "@type": "Offer",
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "priceCurrency": "USD",
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "url": "{{urloffer}}",
+
+      <!--Availability-->
+      <span style="display:none" class="Discontinued"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/Discontinued</span>",</span>
+      <span style="display:none" class="InStock"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/InStock</span>",</span>
+      <span style="display:none" class="InStoreOnly"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/InStoreOnly</span>",</span>
+      <span style="display:none" class="LimitedAvailability"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/LimitedAvailability</span>",</span>
+      <span style="display:none" class="OnlineOnly"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/OnlineOnly</span>",</span>
+      <span style="display:none" class="OutOfStock"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/OutOfStock</span>",</span>
+      <span style="display:none" class="PreOrder"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/PreOrder</span>",</span>
+      <span style="display:none" class="PreSale"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/PreSale</span>",</span>
+      <span style="display:none" class="SoldOut"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "availability": "<span class="element">http://schema.org/SoldOut</span>",</span>
+
+      <!--Price Valid Until -->
+      <span style="display:none" class="sale"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "validFrom": "<span class="element">{{yearvalid}}-{{monthvalid}}-{{datevalid}}</span>",</span>
+
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "price": "<span class="element">{{price}}</span>"
+    <br>&nbsp;&nbsp;&nbsp;  }</span>
+      <br>&nbsp;}
+      <br>&nbsp; &lt;/script&gt;
+
+
+<hr>
+<!--Microdata -->
+<h4>Microdata:</h4>
+<h5><b>Note:</b> This microdata is only a sample for demonstrative purposes. Microdata should be wrapped around elements within your HTML page.</h5>
+<p>
+<br>&nbsp; &lt;div itemscope itemtype="http://schema.org/Event"&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="name"&gt;<span class="element">{{name}}</span>&lt;span&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="description"&gt;<span class="element">{{description}}</span>&lt;span&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="image"&gt;<span class="element">{{image}}</span>&lt;span&gt;
+        <br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="url" content="<span class="element">{{url}}</span>" /&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="startDate" content="<span class="element">{{yearstart}}-{{monthstart}}-{{daystart}}T{{hourstart}}:{{minutestart}}</span>" /&gt;
+<span style="display:none" class="enddate"><br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="endDate" content="<span class="element">{{yearend}}-{{monthend}}-{{dayend}}</span>" /&gt;</span>
+     
+<!--location-->
+     <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="location" itemscope itemtype="http://schema.org/Place" &gt;
+           <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;span itemprop="name"&gt;<span class="element">{{namelocation}}</span>&lt;/span&gt;
+          <!--address-->
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" &gt;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="streetAddress"&gt;<span class="element">{{streetaddress}}</span>&lt;/span&gt;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="addressLocality"&gt;<span class="element">{{addresslocality}}</span>&lt;/span&gt;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="addressRegion"&gt;<span class="element">{{addressregion}}</span>&lt;/span&gt;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="postalCode"&gt;<span class="element">{{postalcode}}</span>&lt;/span&gt;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="addressCountry"&gt;<span class="element">{{addresscountry}}</span>&lt;/span&gt;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+     <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+
+<!--performer-->
+<span style="display:none" class="performer">
+     <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="performer" itemscope itemtype="http://schema.org/<span style="display:none" class="person"><span class="element">Person</span><span style="display:none" class="performinggroup">PerformingGroup</span></span>" &gt;
+           <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;span itemprop="name"&gt;<span class="element">{{nameperformer}}</span>&lt;/span&gt;
+     <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+</span>
+
+<!--offers-->
+<span style="display:none" class="offers">
+     <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="offers" itemscope itemtype="http://schema.org/Offer" &gt;
+           <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;meta itemprop="priceCurrency" content="<span class="element">USD</span>" /&gt;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    &lt;meta itemprop="url" content="{{urloffer}}" /&gt;
+
+            <!-- Avalability-->
+            <span style="display:none" class="Discontinued"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/Discontinued</span>" /&gt;</span>
+            <span style="display:none" class="InStock"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/InStock</span>" /&gt;</span>
+            <span style="display:none" class="InStoreOnly"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/InStoreOnly</span>" /&gt;</span>
+            <span style="display:none" class="LimitedAvailability"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/LimitedAvailability</span>" /&gt;</span>
+            <span style="display:none" class="OnlineOnly"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/OnlineOnly</span>" /&gt;</span>
+            <span style="display:none" class="OutOfStock"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/OutOfStock</span>" /&gt;</span>
+            <span style="display:none" class="PreOrder"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/PreOrder</span>" /&gt;</span>
+            <span style="display:none" class="PreSale"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/PreSale</span>" /&gt;</span>
+            <span style="display:none" class="SoldOut"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="availability" content="<span class="element">http://schema.org/SoldOut</span>" /&gt;</span>
+
+             <!--Price Valid Until -->
+            <span style="display:none" class="sale">
+                  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta itemprop="validFrom" content="<span class="element">{{yearvalid}}-{{monthvalid}}-{{datevalid}}</span>" /&gt;
+            </span>
+
+           <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  $&lt;span itemprop="price"&gt;<span class="element">{{price}}</span>&lt;/span&gt;
+</span>
+<br>&nbsp;   &lt;/div&gt;
+</p>
+
+<hr>
+<h4>More on BreadcrumbList Schema:</h4>
+<p>
+  <ul>
+    <li><a href="https://developers.google.com/search/docs/data-types/events">Google's Event Structured Data Documentation</a></li>
+    <li><a href="http://schema.org/Event">Schema.org's Event Documentation</a></li>
+  </ul>
+</p>
+
+
+<script>
+$( document ).ready(function() {
+
+ $("#enddate").click(function(){
+      $(".enddate").css("display","");
+  });
+
+//Display Availability Options
+  $("#availability").click(function(){
+      $(".availability-options").css("display","");
+  });
+
+//Availability -- > Update JSON-LD when option is selected
+  $(function () {
+    $("#availability-block").change(function() {
+      var val = $(this).val();
+      if(val === "Discontinued") {
+          $(".Discontinued").css("display","");
+      } else if (val === "InStock") {
+          $(".InStock").css("display","");
+        } else if (val === "InStoreOnly") {
+            $(".InStoreOnly").css("display","");
+          } else if (val === "LimitedAvailability") {
+              $(".LimitedAvailability").css("display","");
+            } else if (val === "OnlineOnly") {
+                $(".OnlineOnly").css("display","");
+              } else if (val === "OutOfStock") {
+                  $(".OutOfStock").css("display","");
+                } else if (val === "PreOrder") {
+                    $(".PreOrder").css("display","");
+                  } else if (val === "PreSale") {
+                      $(".PreSale").css("display","");
+                    } else if (val === "SoldOut") {
+                        $(".SoldOut").css("display","");
+                      }
+    });
+  });
+
+ $("#performer").click(function(){
+      $(".performer").css("display","");
+  });
+
+  $("#offers").click(function(){
+      $(".offers").css("display","");
+  });
+
+ $("#sale").click(function(){
+      $(".sale").css("display","");
+  });
+
+$(function () {
+    $("#performeroptions").change(function() {
+      var val = $(this).val();
+      if(val === "person") {
+          $(".performinggroup").css("display","none");
+          $(".person").css("display","");
+      } else if (val === "performinggroup") {
+          $(".person").css("display","none");
+          $(".performinggroup").css("display","");
+        } 
+    });
+  });
+
+});//doc ready
+</script>
+
+</body>
+</html>
