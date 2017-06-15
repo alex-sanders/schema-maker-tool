@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <title>Organization Schema Basic Template</title>
+
+  <!--AngularJs and Bootstrap-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!--jQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body class="container">
+  <style>
+      input {
+        margin-top: 1em;
+        height: 10 px;
+        font-size:12px;
+        width:80%;
+      }
+        p {
+          font-family:Courier;
+          font-size:1em;
+      }
+
+      .element {
+        font-style: bold;
+        background-color: #FFFF00;
+      }
+  </style>
+
+
+<h1>Organization Schema</h1>
+  <h4>Fill in the textbox below. The JSON-LD and Microdata below will update. Then copy the text and paste the following code into <a href="https://search.google.com/structured-data/testing-tool/u/0/">Google's Stuctured Data Testing Tool</a>!</h4>
+  <!--Required markup input text boxes-->
+  <div class="center-block">
+    <input class="center-block" type="text" ng-model="name" placeholder="Organization's name">
+    <input class="center-block" type="text" ng-model="url" placeholder="Organization's Homepage">
+    <input class="center-block" type="text" ng-model="customerservice" placeholder="Organization's Customer Service Number (make sure to add +1 or country code)">
+
+    <!--address -->
+    <input class="center-block" type="text" ng-model="streetaddress" placeholder="Street Address">
+    <input class="center-block" type="text" ng-model="addresslocality" placeholder="State (spelled out)">
+    <input class="center-block" type="text" ng-model="addressregion" placeholder="State (abbreviation)">
+    <input class="center-block" type="text" ng-model="postalcode" placeholder="Zip Code">
+    <input class="center-block" type="text" ng-model="addresscountry" placeholder="Country">
+
+    <!--social media -->
+    <input class="center-block" type="text" ng-model="facebook" placeholder="Organization's Facebook">
+    <div class="twitter" style="display:none">
+      <input class="center-block" type="text" ng-model="twitter" placeholder="Organization's Twitter">
+    </div>
+    <div class="instagram" style="display:none">
+      <input class="center-block" type="text" ng-model="instagram" placeholder="Organization's Instagram">
+    </div>
+        <div class="youtube" style="display:none">
+      <input class="center-block" type="text" ng-model="youtube" placeholder="Organization's YouTube">
+    </div>
+    <div class="linkedin" style="display:none">
+      <input class="center-block" type="text" ng-model="linkedin" placeholder="Organization's LinkedIn">
+    </div>
+    <div class="google" style="display:none">
+      <input class="center-block" type="text" ng-model="google" placeholder="Organization's Google+">
+    </div>
+    <div class="pinterest" style="display:none">
+      <input class="center-block" type="text" ng-model="pinterest" placeholder="Organization's Pinterest">
+    </div>
+    <div class="soundcloud" style="display:none">
+      <input class="center-block" type="text" ng-model="soundcloud" placeholder="Organization's SoundCloud">
+    </div>
+    <div class="tumblr" style="display:none">
+      <input class="center-block" type="text" ng-model="tumblr" placeholder="Organization's Tumblr">
+    </div>
+   <div class="myspace" style="display:none">
+      <input class="center-block" type="text" ng-model="myspace" placeholder="Organization's Myspace">
+    </div>
+
+
+    <!--customer service -->
+   <div class="technicalsupport" style="display:none">
+      <input class="center-block" type="text" ng-model="technicalsupport" placeholder="Technical Support # (make sure to add +1 or country code)">
+    </div>
+   <div class="billingsupport" style="display:none">
+      <input class="center-block" type="text" ng-model="billingsupport" placeholder="Billing Support # (make sure to add +1 or country code)">
+    </div>
+   <div class="billpayment" style="display:none">
+      <input class="center-block" type="text" ng-model="billpayment" placeholder="Bill Payment # (make sure to add +1 or country code)">
+    </div>
+    <div class="sales" style="display:none">
+      <input class="center-block" type="text" ng-model="sales" placeholder="Sales # (make sure to add +1 or country code)">
+    </div>
+    <div class="reservations" style="display:none">
+      <input class="center-block" type="text" ng-model="reservations" placeholder="Reservation # (make sure to add +1 or country code)">
+    </div>
+    <div class="creditcardsupport" style="display:none">
+      <input class="center-block" type="text" ng-model="creditcardsupport" placeholder="Credit Card Support # (make sure to add +1 or country code)">
+    </div>
+    <div class="emergency" style="display:none">
+      <input class="center-block" type="text" ng-model="emergency" placeholder="Emergency # (make sure to add +1 or country code)">
+    </div>
+    <div class="baggagetracking" style="display:none">
+      <input class="center-block" type="text" ng-model="baggagetracking" placeholder="Baggage Tracking # (make sure to add +1 or country code)">
+    </div>
+    <div class="roadsideassistance" style="display:none">
+      <input class="center-block" type="text" ng-model="roadsideassistance" placeholder="Roadside Assistance # (make sure to add +1 or country code)">
+    </div>
+    <div class="packagetracking" style="display:none">
+      <input class="center-block" type="text" ng-model="packagetracking" placeholder="Package Tracking # (make sure to add +1 or country code)">
+    </div>
+
+
+<!--buttons -->
+    <br>
+    <!--social buttons -->
+    <div class="row" style="text-align:center">
+        <button type="button" id="twitter" class="btn btn-info btn-md">+Twitter</button>
+        <button type="button" id="instagram" class="btn btn-info btn-md">+Instagram</button>
+        <button type="button" id="youtube" class="btn btn-info btn-md">+YouTube</button>
+        <button type="button" id="linkedin" class="btn btn-info btn-md">+LinkedIn</button>
+        <button type="button" id="google" class="btn btn-info btn-md">+Google+</button>
+        <button type="button" id="pinterest" class="btn btn-info btn-md">+Pinterest</button>
+        <button type="button" id="soundcloud" class="btn btn-info btn-md">+SoundCloud</button>
+        <button type="button" id="tumblr" class="btn btn-info btn-md">+Tumblr</button>
+        <button type="button" id="myspace" class="btn btn-info btn-md">+Myspace</button>
+    </div>
+    <br>
+    <!-- # buttons -->
+    <div class="row" style="text-align:center">
+        <button type="button" id="technicalsupport" class="btn btn-warning btn-sm">+Technical Support</button>
+        <button type="button" id="billingsupport" class="btn btn-warning btn-sm">+Billing Support</button>
+        <button type="button" id="billpayment" class="btn btn-warning btn-sm">+Bill Payment</button>
+        <button type="button" id="sales" class="btn btn-warning btn-sm">+Sales</button>
+        <button type="button" id="reservations" class="btn btn-warning btn-sm">+Reservations</button>
+        <button type="button" id="creditcardsupport" class="btn btn-warning btn-sm">+Credit Card Support</button>
+        <button type="button" id="emergency" class="btn btn-warning btn-sm">+Emergency</button>
+        <button type="button" id="baggagetracking" class="btn btn-warning btn-sm">+Baggage Tracking</button>
+        <button type="button" id="roadsideassistance" class="btn btn-warning btn-sm">+Roadside Assistance</button>
+        <button type="button" id="packagetracking" class="btn btn-warning btn-sm">+Package Tracking</button>
+    </div>
+
+<hr>
+<!--JSON-LD-->
+<h4>JSON-LD</h4>
+<p>
+    <br>&nbsp; &lt;script type="application/ld+json"&gt;
+    <br>&nbsp; {
+    <br>&nbsp;&nbsp;&nbsp;  "@context": "http://schema.org/",
+    <br>&nbsp;&nbsp;&nbsp;  "@type": "Organization",
+    <br>&nbsp;&nbsp;&nbsp;  "name": "<span class="element">{{name}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "url": "<span class="element">{{url}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "address": {
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "PostalAddress",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "streetAddress": "<span class="element">{{streetaddress}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "addressLocality": "<span class="element">{{addresslocality}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "addressRegion": "<span class="element">{{addressregion}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "postalCode": "<span class="element">{{postalcode}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "addressCountry": "<span class="element">{{addresscountry}}</span>"
+    <br>&nbsp;&nbsp;&nbsp;  },
+    <!--social media-->
+    <br>&nbsp;&nbsp;&nbsp;  "sameAs": [
+        "<span class="element">{{facebook}}</span>"
+              <span style="display:none" class="twitter">, "<span class="element">{{twitter}}</span>"</span>
+              <span style="display:none" class="instagram">, "<span class="element">{{instagram}}</span>"</span>
+              <span style="display:none" class="youtube">, "<span class="element">{{youtube}}</span>"</span>
+              <span style="display:none" class="linkedin">, "<span class="element">{{linkedin}}</span>"</span>
+              <span style="display:none" class="google">, "<span class="element">{{google}}</span>"</span>
+              <span style="display:none" class="pinterest">, "<span class="element">{{pinterest}}</span>"</span>
+              <span style="display:none" class="soundcloud">, "<span class="element">{{soundcloud}}</span>"</span>
+              <span style="display:none" class="tumblr">, "<span class="element">{{tumblr}}</span>"</span>
+              <span style="display:none" class="myspace">, "<span class="element">{{myspace}}</span>"</span>],
+
+    <!--phone #s-->
+    <br>&nbsp;&nbsp;&nbsp;  "contactPoint": [{
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ContactPoint",
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "telephone": "<span class="element">{{customerservice}}</span>",
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "contactType": "customer service"
+  <br>&nbsp;}<span style="display:none" class="technicalsupport">, 
+      <br>&nbsp;{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ContactPoint",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "telephone": "<span class="element">{{technicalsupport}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "contactType": "technical support"
+      <br>&nbsp;&nbsp;}</span><span style="display:none" class="billingsupport">, 
+      <br>&nbsp;&nbsp;{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ContactPoint",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "telephone": "<span class="element">{{billingsupport}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "contactType": "billing support"
+      <br>&nbsp;&nbsp;}</span><span style="display:none" class="billpayment">, 
+      <br>&nbsp;&nbsp;{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ContactPoint",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "telephone": "<span class="element">{{billpayment}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "contactType": "bill payment"
+      <br>&nbsp;&nbsp;}</span><span style="display:none" class="sales">, 
+      <br>&nbsp;&nbsp;{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ContactPoint",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "telephone": "<span class="element">{{sales}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "contactType": "sales"
+      <br>&nbsp;&nbsp;}</span><span style="display:none" class="reservations">, 
+      <br>&nbsp;&nbsp;{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ContactPoint",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "telephone": "<span class="element">{{reservations}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "contactType": "reservations"
+      <br>&nbsp;&nbsp;}</span><span style="display:none" class="creditcardsupport">, 
+      <br>&nbsp;&nbsp;{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ContactPoint",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "telephone": "<span class="element">{{creditcardsupport}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "contactType": "credit card support"
+      <br>&nbsp;&nbsp;}</span><span style="display:none" class="emergency">, 
+      <br>&nbsp;&nbsp;{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ContactPoint",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "telephone": "<span class="element">{{emergency}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "contactType": "emergency"
+      <br>&nbsp;&nbsp;}</span><span style="display:none" class="baggagetracking">, 
+      <br>&nbsp;&nbsp;{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ContactPoint",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "telephone": "<span class="element">{{baggagetracking}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "contactType": "baggage tracking"
+      <br>&nbsp;&nbsp;}</span><span style="display:none" class="roadsideassistance">, 
+      <br>&nbsp;&nbsp;{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ContactPoint",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "telephone": "<span class="element">{{roadsideassistance}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "contactType": "roadside assistance"
+      <br>&nbsp;&nbsp;}</span><span style="display:none" class="packagetracking">, 
+      <br>&nbsp;&nbsp;{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ContactPoint",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "telephone": "<span class="element">{{packagetracking}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "contactType": "package tracking"
+      <br>&nbsp;&nbsp;}</span>]
+   <br>&nbsp;}
+  <br>&nbsp; &lt;/script&gt;
+ </p>
+
+<hr>
+<h4>Microdata:</h4>
+<h5><b>Note:</b> This microdata is only a sample for demonstrative purposes. Microdata should be wrapped around elements within your HTML page.</h5>
+<p>
+<br>&nbsp; &lt;div itemscope itemtype="http://schema.org/Organization"&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="name"&gt;<span class="element">{{name}}</span>&lt;span&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="url"&gt;<span class="element">{{url}}</span>&lt;span&gt;
+    <!--address-->
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" &gt;
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="streetAddress"&gt;<span class="element">{{streetaddress}}</span>&lt;span&gt;
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="addressLocality"&gt;<span class="element">{{addresslocality}}</span>&lt;span&gt;
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="addressRegion"&gt;<span class="element">{{addressregion}}</span>&lt;span&gt;
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="postalCode"&gt;<span class="element">{{postalcode}}</span>&lt;span&gt;
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="addressCountry"&gt;<span class="element">{{addresscountry}}</span>&lt;span&gt;
+    <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+
+    <!-- social media-->
+    <br>&nbsp;&nbsp;&nbsp;  &lt;a itemprop="sameAs" href="{{facebook}}"&gt;FB&lt;/a&gt;
+
+    <span style="display:none" class="twitter">
+      <br>&nbsp;&nbsp;&nbsp;  &lt;a itemprop="sameAs" href="<span class="element">{{twitter}}</span>"&gt;Twitter&lt;/a&gt;
+    </span>
+    <span style="display:none" class="instagram">
+      <br>&nbsp;&nbsp;&nbsp;  &lt;a itemprop="sameAs" href="<span class="element">{{instagram}}</span>"&gt;Instagram&lt;/a&gt;
+    </span>
+    <span style="display:none" class="youtube">
+      <br>&nbsp;&nbsp;&nbsp;  &lt;a itemprop="sameAs" href="<span class="element">{{youtube}}</span>"&gt;YouTube&lt;/a&gt;
+    </span>
+    <span style="display:none" class="linkedin">
+      <br>&nbsp;&nbsp;&nbsp;  &lt;a itemprop="sameAs" href="<span class="element">{{linkedin}}</span>"&gt;LinkedIn&lt;/a&gt;
+    </span>
+    <span style="display:none" class="google">
+      <br>&nbsp;&nbsp;&nbsp;  &lt;a itemprop="sameAs" href="<span class="element">{{google}}</span>"&gt;Google&lt;/a&gt;
+    </span>
+    <span style="display:none" class="pinterest">
+      <br>&nbsp;&nbsp;&nbsp;  &lt;a itemprop="sameAs" href="<span class="element">{{pinterest}}</span>"&gt;Pinterest&lt;/a&gt;
+    </span>
+    <span style="display:none" class="soundcloud">
+      <br>&nbsp;&nbsp;&nbsp;  &lt;a itemprop="sameAs" href="<span class="element">{{soundcloud}}</span>"&gt;SoundCloud&lt;/a&gt;
+    </span>
+    <span style="display:none" class="tumblr">
+      <br>&nbsp;&nbsp;&nbsp;  &lt;a itemprop="sameAs" href="<span class="element">{{tumblr}}</span>"&gt;Tumblr&lt;/a&gt;
+    </span>
+    <span style="display:none" class="myspace">
+      <br>&nbsp;&nbsp;&nbsp;  &lt;a itemprop="sameAs" href="<span class="element">{{myspace}}</span>"&gt;Myspace&lt;/a&gt;
+    </span>
+
+    <!--phone #s-->
+<br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="contactPoint" itemscope itemtype="http://schema.org/ContactPoint" &gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="telephone" content="<span class="element">{{customerservice}}</span>" /&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="contactType" content="customer service" /&gt;
+<br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+<span style="display:none" class="technicalsupport">
+  <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="contactPoint" itemscope itemtype="http://schema.org/ContactPoint" &gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="telephone" content="<span class="element">{{technicalsupport}}</span>" /&gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="contactType" content="technical support" /&gt;
+  <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+</span>
+<span style="display:none" class="billingsupport"> 
+  <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="contactPoint" itemscope itemtype="http://schema.org/ContactPoint" &gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="telephone" content="<span class="element">{{billingsupport}}</span>" /&gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="contactType" content="billing support" /&gt;
+  <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+</span>
+<span style="display:none" class="billpayment">
+  <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="contactPoint" itemscope itemtype="http://schema.org/ContactPoint" &gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="telephone" content="<span class="element">{{billpayment}}</span>" /&gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="contactType" content="bill payment" /&gt;
+  <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+</span>
+<span style="display:none" class="sales">
+  <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="contactPoint" itemscope itemtype="http://schema.org/ContactPoint" &gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="telephone" content="<span class="element">{{sales}}</span>" /&gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="contactType" content="sales" /&gt;
+  <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+</span>
+<span style="display:none" class="reservations">
+  <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="contactPoint" itemscope itemtype="http://schema.org/ContactPoint" &gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="telephone" content="<span class="element">{{reservations}}</span>" /&gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="contactType" content="reservations" /&gt;
+  <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+</span>
+<span style="display:none" class="creditcardsupport">
+  <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="contactPoint" itemscope itemtype="http://schema.org/ContactPoint" &gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="telephone" content="<span class="element">{{creditcardsupport}}</span>" /&gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="contactType" content="credit card support" /&gt;
+  <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+</span>
+<span style="display:none" class="emergency">
+  <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="contactPoint" itemscope itemtype="http://schema.org/ContactPoint" &gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="telephone" content="<span class="element">{{emergency}}</span>" /&gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="contactType" content="emergency" /&gt;
+  <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+</span>
+<span style="display:none" class="baggagetracking">
+  <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="contactPoint" itemscope itemtype="http://schema.org/ContactPoint" &gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="telephone" content="<span class="element">{{baggagetracking}}</span>" /&gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="contactType" content="baggage tracking" /&gt;
+  <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+</span>
+<span style="display:none" class="roadsideassistance">
+  <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="contactPoint" itemscope itemtype="http://schema.org/ContactPoint" &gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="telephone" content="<span class="element">{{roadsideassistance}}</span>" /&gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="contactType" content="roadside assistancee" /&gt;
+  <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+</span>
+<span style="display:none" class="packagetracking">
+  <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="contactPoint" itemscope itemtype="http://schema.org/ContactPoint" &gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="telephone" content="<span class="element">{{packagetracking}}</span>" /&gt;
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="contactType" content="package tracking" /&gt;
+  <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+</span>
+<br>&nbsp;   &lt;/div&gt;
+</p>
+
+
+<hr>
+
+<h4>More on Organization Schema:</h4>
+<p>
+  <ul>
+    <li><a href="https://developers.google.com/search/docs/data-types/corporate-contacts">Google's Corporate Contact Structured Data Documentation</a></li>
+    <li><a href="https://developers.google.com/search/docs/data-types/social-profile-links">Google's Social Profile Structured Data Documentation</a></li>
+    <li><a href="http://schema.org/Organization">Schema.org's Organization Documentation</a></li>
+  </ul>
+</p>
+
+<script>
+$( document ).ready(function() {
+
+//social media
+$("#twitter").click(function(){
+    $(".twitter").css("display","");
+});
+$("#google").click(function(){
+    $(".google").css("display","");
+});
+$("#instagram").click(function(){
+    $(".instagram").css("display","");
+});
+$("#youtube").click(function(){
+    $(".youtube").css("display","");
+});
+$("#linkedin").click(function(){
+    $(".linkedin").css("display","");
+});
+$("#myspace").click(function(){
+    $(".myspace").css("display","");
+});
+$("#pinterest").click(function(){
+    $(".pinterest").css("display","");
+});
+$("#soundcloud").click(function(){
+    $(".soundcloud").css("display","");
+});
+$("#tumblr").click(function(){
+    $(".tumblr").css("display","");
+});
+
+
+//additional #s
+$("#technicalsupport").click(function(){
+    $(".technicalsupport").css("display","");
+});
+$("#billingsupport").click(function(){
+    $(".billingsupport").css("display","");
+});
+$("#billpayment").click(function(){
+    $(".billpayment").css("display","");
+});
+$("#sales").click(function(){
+    $(".sales").css("display","");
+});
+$("#reservations").click(function(){
+    $(".reservations").css("display","");
+});
+$("#creditcardsupport").click(function(){
+    $(".creditcardsupport").css("display","");
+});
+$("#emergency").click(function(){
+    $(".emergency").css("display","");
+});
+$("#baggagetracking").click(function(){
+    $(".baggagetracking").css("display","");
+});
+$("#roadsideassistance").click(function(){
+    $(".roadsideassistance").css("display","");
+});
+$("#packagetracking").click(function(){
+    $(".packagetracking").css("display","");
+});
+
+
+});//doc ready
+</script>
+
+</body>
+</html>
+
+
+
+
