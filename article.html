@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <title>Article Schema Basic Template</title>
+
+  <!--AngularJs and Bootstrap-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!--jQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body class="container">
+  <style>
+      input {
+        margin-top: 1em;
+        height: 10 px;
+        font-size:12px;
+        width:80%;
+      }
+        p {
+          font-family:Courier;
+          font-size:1em;
+      }
+
+      .element {
+        font-style: bold;
+        background-color: #FFFF00;
+      }
+  </style>
+
+
+<h1>Article Schema</h1>
+<h4>Fill in the textbox below. The JSON-LD and Microdata below will update. Then copy the text and paste the following code into <a href="https://search.google.com/structured-data/testing-tool/u/0/">Google's Stuctured Data Testing Tool</a>!</h4>
+<!--Required markup input text boxes-->
+  <div class="center-block">
+    <input class="center-block" type="text" ng-model="headline" placeholder="Article's headline">
+    <input class="center-block" type="text" ng-model="description" placeholder="Description of article">
+    <input class="center-block" type="text" ng-model="url" placeholder="Article's URL">
+    <input class="center-block" type="text" ng-model="image" placeholder="Image for Article">
+    <input class="center-block" type="text" ng-model="heightimage" placeholder="Image's Height (required for AMP pages)">
+    <input class="center-block" type="text" ng-model="widthimage" placeholder="Image's Width (required for AMP pages)">
+    <input class="center-block" type="text" ng-model="yearpublished" placeholder="Year published (ex. 2017)">
+    <input class="center-block" type="text" ng-model="monthpublished" placeholder="Month published (ex. 01)">
+    <input class="center-block" type="text" ng-model="daypublished" placeholder="Day published (ex. 17)">
+    <input class="center-block" type="text" ng-model="nameauthor" placeholder="Name of author or organization">
+    <input class="center-block" type="text" ng-model="namepublisher" placeholder="Publisher's name">
+    <input class="center-block" type="text" ng-model="imagelogo" placeholder="Publisher's logo">
+    <input class="center-block" type="text" ng-model="heightlogo" placeholder="Logos's Height (required for AMP pages)">
+    <input class="center-block" type="text" ng-model="widthlogo" placeholder="Logo's Width (required for AMP pages)">
+       <br>
+            <select id="author" class="center-block">
+              <option value="Select Option">Select Option Below</option>
+              <option value="person">Person</option>
+              <option value="organization">Organization</option>
+            </select>
+    <span style="display:none" class="datemodified">
+        <input class="center-block" type="text" ng-model="yearmodified" placeholder="Year modified (ex. 2017)">
+        <input class="center-block" type="text" ng-model="monthmodified" placeholder="Month modified (ex. 02)">
+        <input class="center-block" type="text" ng-model="daymodified" placeholder="Day modified (ex. 19)">
+    </span>
+<!--buttons-->
+<br>
+  <div style="text-align:center">
+    <button type="button" id="datemodified" class="btn btn-info btn-lg">+Date Modified</button>
+  </div>
+
+  <hr>
+<!--JSON-LD-->
+<h4>JSON-LD</h4>
+<h5>Note: If you are closed on Sunday or weekends, you will have to remove a comma after the last OpeningHoursSpecification's object.</h5>
+<p>
+    <br>&nbsp; &lt;script type="application/ld+json"&gt;
+    <br>&nbsp; {
+    <br>&nbsp;&nbsp;&nbsp;  "@context": "http://schema.org/",
+    <br>&nbsp;&nbsp;&nbsp;  "@type": "Article",
+    <br>&nbsp;&nbsp;&nbsp;  "headline": "<span class="element">{{headline}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "description": "<span class="element">{{description}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "mainEntityOfPage": {
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "WebPage",
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@id": "<span class="element">{{url}}</span>",
+    <br>&nbsp;&nbsp;&nbsp; },
+    <br>&nbsp;&nbsp;&nbsp;  "image": {
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ImageObject",
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "url": "<span class="element">{{image}}</span>",
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "height": "<span class="element">{{heightimage}}</span>",
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "width": "<span class="element">{{widthimage}}</span>"
+    <br>&nbsp;&nbsp;&nbsp; },
+    <br>&nbsp;&nbsp;&nbsp;  "datePublished": "<span class="element">{{yearpublished}}</span>-<span class="element">{{monthpublished}}</span>-<span class="element">{{daypublished}}</span>",
+    <span style="display:none" class="datemodified"><br>&nbsp;&nbsp;&nbsp;  "dateModified": "<span class="element">{{yearmodified}}</span>-<span class="element">{{monthmodified}}</span>-<span class="element">{{daymodified}}",</span></span>
+
+    <br>&nbsp;&nbsp;&nbsp;  "author": {
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "<span class="element"><span style="display:none" class="personauthor">Person</span><span style="display:none" class="organizationauthor">Organization</span></span>",
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "name": "<span class="element">{{nameauthor}}</span>"
+    <br>&nbsp;&nbsp;&nbsp; },
+    <br>&nbsp;&nbsp;&nbsp;  "publisher": {
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "Organization",
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "name": "<span class="element">{{namepublisher}}</span>",
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "logo": {
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ImageObject",
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "url": "<span class="element">{{imagelogo}}</span>",
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "height": "<span class="element">{{heightlogo}}</span>",
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "width": "<span class="element">{{widthlogo}}</span>"
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+    <br>&nbsp;&nbsp;&nbsp; }
+          <br>&nbsp;}
+      <br>&nbsp; &lt;/script&gt;
+</p>
+
+<hr>
+<!--Microdata -->
+<h4>Microdata:</h4>
+<h5><b>Note:</b> This microdata is only a sample for demonstrative purposes. Microdata should be wrapped around elements within your HTML page.</h5>
+<p>
+<br>&nbsp; &lt;div itemscope itemtype="http://schema.org/Article"&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="headline"&gt;<span class="element">{{headline}}</span>&lt;span&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="description"&gt;<span class="element">{{description}}</span>&lt;span&gt;
+
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="mainEntityOfPage" itemscope itemtype="http://schema.org/WebPage" &gt;
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;meta itemprop="url" content="<span class="element">{{url}}</span>" /&gt;
+      <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+
+      <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="image" itemscope itemtype="http://schema.org/ImageObject" &gt;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;img itemprop="url" content="<span class="element">{{image}}</span>" /&gt;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;meta itemprop="height" content="<span class="element">{{heightimage}}</span>" /&gt;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;meta itemprop="width" content="<span class="element">{{widthimage}}</span>" /&gt;
+        <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+
+        <br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="datePublished" content="<span class="element">{{yearpublished}}</span>-<span class="element">{{monthpublished}}</span>-<span class="element">{{daypublished}}</span>" /&gt;
+        <span style="display:none" class="datemodified"><br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="dateModified" content="<span class="element">{{yearmodified}}</span>-<span class="element">{{monthmodified}}</span>-<span class="element">{{daymodified}}"</span></span> /&gt;</span>
+
+        <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="author" itemscope itemtype="http://schema.org/<span class="element"><span style="display:none" class="personauthor">Person</span><span style="display:none" class="organizationauthor">Organization</span></span>" &gt;
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;meta itemprop="name" content="<span class="element">{{nameauthor}}</span>" /&gt;
+          <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+          
+          <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="publisher" itemscope itemtype="http://schema.org/Organization" &gt;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;meta itemprop="name" content="<span class="element">{{namepublisher}}</span>" /&gt;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    &lt;span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject" &gt;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;img itemprop="url" content="<span class="element">{{imagelogo}}</span>" /&gt;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="height" content="<span class="element">{{heightlogo}}</span>" /&gt;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="width" content="<span class="element">{{widthlogo}}</span>" /&gt;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;/span&gt;
+          <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+<br>&nbsp;   &lt;/div&gt;
+</p>
+
+
+
+<hr>
+<h4>More on Article Schema:</h4>
+<p>
+  <ul>
+    <li><a href="https://developers.google.com/search/docs/data-types/articles">Google's Article Structured Data Documentation</a></li>
+    <li><a href="hhttp://schema.org/Article">Schema.org's Article Documentation</a></li>
+  </ul>
+</p>
+
+
+<script>
+$( document ).ready(function() {
+
+ $("#datemodified").click(function(){
+      $(".datemodified").css("display","");
+  });
+
+$(function () {
+    $("#author").change(function() {
+      var val = $(this).val();
+      if(val === "person") {
+          $(".organizationauthor").css("display","none");
+          $(".personauthor").css("display","");
+      } else if (val === "organization") {
+          $(".personauthor").css("display","none");
+          $(".organizationauthor").css("display","");
+        } 
+    });
+  });
+
+ });//doc ready
+</script>
+
+</body>
+</html>
