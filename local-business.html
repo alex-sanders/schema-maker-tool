@@ -45,17 +45,21 @@
     <input class="center-block" type="text" ng-model="name" placeholder="Local business' name">
     <input class="center-block" type="text" ng-model="description" placeholder="Description of the local business">
     <input class="center-block" type="text" ng-model="telephone" placeholder="Phone #">
-    <input class="center-block" type="text" ng-model="image" placeholder="Product Image URL (include http://)">
+    <input class="center-block" type="text" ng-model="image" placeholder="Business' Image in a URL format (include http://)">
+    <input class="center-block" type="text" ng-model="pricerange" placeholder="Price Range (ex. $, $$, $$$, etc.)">
+
     <!--address -->
     <input class="center-block" type="text" ng-model="streetaddress" placeholder="Street Address">
     <input class="center-block" type="text" ng-model="addresslocality" placeholder="State (spelled out)">
     <input class="center-block" type="text" ng-model="addressregion" placeholder="State (abbreviation)">
     <input class="center-block" type="text" ng-model="postalcode" placeholder="Zip Code">
-    <input class="center-block" type="text" ng-model="addressCountry" placeholder="Country">
+    <input class="center-block" type="text" ng-model="addresscountry" placeholder="Country">
 
-    <!--Payment Type Options -->
-    <input class="center-block" type="text" ng-model="paymentaccepted" placeholder="One form of payment - Cash, credit card, etc.">
-
+    <!-- has Map -->
+    <div class="hasmap" style="display:none">
+      <input class="center-block" type="text" ng-model="hasmap" placeholder="Map URL (include http://)">
+    </div>
+    
     <!--geo-->
     <div class="geo" style="display:none">
       <input class="center-block" type="text" ng-model="latitude" placeholder="latitude">
@@ -69,12 +73,16 @@
         <input class="center-block" type="text" ng-model="bestrating" placeholder="Top potential rating score">
     </div>
 
-    <!-- has Map -->
-    <div class="hasmap" style="display:none">
-      <input class="center-block" type="text" ng-model="hasmap" placeholder="Map URL (include http://)">
-    </div>
 
     <!--opening hours -->
+      <div class="weekday" style="display:none">
+        <input class="center-block" type="text" ng-model="opensweekday" placeholder="Opening Hour Weekdays (military time)">
+        <input class="center-block" type="text" ng-model="closesweekday" placeholder="Closing Hour Weekdays (military time)">
+      </div>
+      <div class="weekend" style="display:none">
+        <input class="center-block" type="text" ng-model="opensweekend" placeholder="Opening Hour Weekends (military time)">
+        <input class="center-block" type="text" ng-model="closesweekend" placeholder="Closing Hour Weekends (military time)">
+      </div>
       <div class="monday" style="display:none">
         <input class="center-block" type="text" ng-model="opensmonday" placeholder="Opening Hour Monday (military time)">
         <input class="center-block" type="text" ng-model="closesmonday" placeholder="Closing Hour Monday (military time)">
@@ -103,7 +111,7 @@
         <input class="center-block" type="text" ng-model="openssunday" placeholder="Opening Hour Sunday (military time)">
         <input class="center-block" type="text" ng-model="closessunday" placeholder="Closing Hour Sunday (military time)">
       </div>
-
+  </div>
 
 <!--buttons for additional itemprops-->
 <br>
@@ -125,22 +133,207 @@
           <br>
           <div class="opening-hours-week" style="display:none">
               <div style="text-align:center">
-                  <button type="button" id="monday" class="btn btn-success btn-md">+Monday Hours</button>
-                  <button type="button" id="tuesday" class="btn btn-success btn-md">+Tuesday Hours</button>
-                  <button type="button" id="wednesday" class="btn btn-success btn-md">+Wednesday Hours</button>
-                  <button type="button" id="thursday" class="btn btn-success btn-md">+Thursday Hours</button>
-                  <button type="button" id="friday" class="btn btn-success btn-md">+Friday Hours</button>
-                  <button type="button" id="saturday" class="btn btn-success btn-md">+Saturday Hours</button>
-                  <button type="button" id="sunday" class="btn btn-success btn-md">+Sunday Hours</button>
+                  <button type="button" id="weekday" class="btn btn-success btn-sm">+Weekday Hours</button>
+                  <button type="button" id="weekend" class="btn btn-success btn-sm">+Weekend Hours</button>
+                  <button type="button" id="monday" class="btn btn-default btn-sm">+Monday Hours</button>
+                  <button type="button" id="tuesday" class="btn btn-default btn-sm">+Tuesday Hours</button>
+                  <button type="button" id="wednesday" class="btn btn-default btn-sm">+Wednesday Hours</button>
+                  <button type="button" id="thursday" class="btn btn-default btn-sm">+Thursday Hours</button>
+                  <button type="button" id="friday" class="btn btn-default btn-sm">+Friday Hours</button>
+                  <button type="button" id="saturday" class="btn btn-default btn-sm">+Saturday Hours</button>
+                  <button type="button" id="sunday" class="btn btn-default btn-sm">+Sunday Hours</button>
                 </div>
         </div>
     <hr>
 
 <!--JSON-LD-->
+<h4>JSON-LD</h4>
+<h5>Note: If you are closed on Sunday or weekends, you will have to remove a comma after the last OpeningHoursSpecification's object.</h5>
+<p>
+    <br>&nbsp; &lt;script type="application/ld+json"&gt;
+    <br>&nbsp; {
+    <br>&nbsp;&nbsp;&nbsp;  "@context": "http://schema.org/",
+    <br>&nbsp;&nbsp;&nbsp;  "@type": "LocalBusiness",
+    <br>&nbsp;&nbsp;&nbsp;  "name": "<span class="element">{{name}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "description": "<span class="element">{{description}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "telephone": "<span class="element">{{telephone}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "image": "<span class="element">{{image}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "priceRange": "<span class="element">{{pricerange}}</span>",
 
+      <!-- Aggregate Rating -->
+      <span style="display:none" class="aggregate-rating">
+        <br>&nbsp;&nbsp;&nbsp; "aggregateRating": {
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "AggregateRating",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "ratingValue": "<span class="element">{{ratingvalue}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "reviewCount": "<span class="element">{{ratingcount}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "bestRating": "<span class="element">{{bestrating}}</span>"
+        <br>&nbsp;&nbsp;&nbsp;  },
+      </span>
 
+    <!--has Map-->
+     <span style="display:none" class="hasmap">
+          <br>&nbsp;&nbsp;&nbsp;  "hasMap": "<span class="element">{{hasmap}}</span>",
+     </span>
+
+     <!--geo -->
+     <span style="display:none" class="geo">
+        <br>&nbsp;&nbsp;&nbsp;  "geo": {
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "GeoCoordinates",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "latitude": "<span class="element">{{latitude}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "longitude": "<span class="element">{{longitude}}</span>"
+        <br>&nbsp;&nbsp;&nbsp;  },
+    </span>
+    <!--Opening Hours -->
+    <span style="display:none" class="opening-hours">
+        <br>&nbsp;&nbsp;&nbsp;  "openingHoursSpecification": [</span><span style="display:none" class="weekday">{
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "OpeningHoursSpecification",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "opens": "<span class="element">{{opensweekday}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "closes": "<span class="element">{{closesweekday}}</span>"
+      <br>&nbsp;&nbsp;&nbsp;  },</span><span style="display:none" class="monday">{
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "OpeningHoursSpecification",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "dayOfWeek": "Monday",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "opens": "<span class="element">{{opensmonday}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "closes": "<span class="element">{{closesmonday}}</span>"
+      <br>&nbsp;&nbsp;&nbsp;  },</span>
+      <span style="display:none" class="tuesday">{
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "OpeningHoursSpecification",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "dayOfWeek": "Tuesday",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "opens": "<span class="element">{{openstuesday}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "closes": "<span class="element">{{closestuesday}}</span>"
+      <br>&nbsp;&nbsp;&nbsp;  },</span>
+      <span style="display:none" class="wednesday">{
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "OpeningHoursSpecification",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "dayOfWeek": "Wednesday",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "opens": "<span class="element">{{openswednesday}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "closes": "<span class="element">{{closeswednesday}}</span>"
+      <br>&nbsp;&nbsp;&nbsp;  },</span>
+      <span style="display:none" class="thursday">{
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "OpeningHoursSpecification",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "dayOfWeek": "Thursday",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "opens": "<span class="element">{{opensthursday}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "closes": "<span class="element">{{closesthursday}}</span>"
+      <br>&nbsp;&nbsp;&nbsp;  },</span><span style="display:none" class="friday">{
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "OpeningHoursSpecification",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "dayOfWeek": "Friday",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "opens": "<span class="element">{{opensfriday}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "closes": "<span class="element">{{closesfriday}}</span>"
+      <br>&nbsp;&nbsp;&nbsp;  },</span><span style="display:none" class="saturday">{
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "OpeningHoursSpecification",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "dayOfWeek": "Saturday",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "opens": "<span class="element">{{openssaturday}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "closes": "<span class="element">{{closessaturday}}</span>"
+      <br>&nbsp;&nbsp;&nbsp;  },</span><span style="display:none" class="sunday">{
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "OpeningHoursSpecification",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "dayOfWeek": "Sunday",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "opens": "<span class="element">{{openssunday}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "closes": "<span class="element">{{closessunday}}</span>"
+      <br>&nbsp;&nbsp;&nbsp;  }</span><span style="display:none" class="weekend">{
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "OpeningHoursSpecification",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "dayOfWeek": ["Saturday","Sunday"],
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "opens": "<span class="element">{{opensweekend}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "closes": "<span class="element">{{closesweekend}}</span>"
+      <br>&nbsp;&nbsp;&nbsp;  }</span><span style="display:none" class="opening-hours">],</span>
+
+    <br>&nbsp;&nbsp;&nbsp;  "address": {
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "PostalAddress",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "streetAddress": "<span class="element">{{streetaddress}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "addressLocality": "<span class="element">{{addresslocality}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "addressRegion": "<span class="element">{{addressregion}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "postalCode": "<span class="element">{{postalcode}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "addressCountry": "<span class="element">{{addresscountry}}</span>"
+    <br>&nbsp;&nbsp;&nbsp;  }
+      <br>&nbsp;}
+      <br>&nbsp; &lt;/script&gt;
+  </p>
+<hr>
 <!--Microdata -->
+<h4>Microdata:</h4>
+<h5><b>Note:</b> This microdata is only a sample for demonstrative purposes. Microdata should be wrapped around elements within your HTML page.</h5>
+<p>
+<br>&nbsp; &lt;div itemscope itemtype="http://schema.org/LocalBusiness"&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="name"&gt;<span class="element">{{name}}</span>&lt;span&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="description"&gt;<span class="element">{{description}}</span>&lt;span&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="telephone"&gt;<span class="element">{{telephone}}</span>&lt;span&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="image"&gt;<span class="element">{{image}}</span>&lt;span&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="priceRange"&gt;<span class="element">{{pricerange}}</span>&lt;span&gt;
 
+    <!-- Aggregate Rating -->
+      <span style="display:none" class="aggregate-rating">
+          <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" &gt;
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="ratingValue"&gt;<span class="element">{{ratingvalue}}</span>&lt;/span&gt; stars, based on
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="reviewCount"&gt;<span class="element">{{ratingcount}}</span>&lt;/span&gt; reviews
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="bestRating" content="<span class="element">{{bestrating}}"</span> /&gt;
+          <br>&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+      </span>
+
+    <!--has Map-->
+     <span style="display:none" class="hasmap">
+          <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="hasMap"&gt;<span class="element">{{hasmap}}</span>&lt;span&gt;
+     </span>
+
+     <!--geo -->
+     <span style="display:none" class="geo">
+        <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates" &gt;
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;meta itemprop="latitude" content="<span class="element">{{latitude}}</span>" /&gt;
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;meta itemprop="longitude" content="<span class="element">{{longitude}}</span>" /&gt;
+          <br>&lt;/span &gt;
+    </span>
+    <!--Opening Hours -->
+    <span style="display:none" class="opening-hours">
+      <span style="display:none" class="weekday">
+          <br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="openingHours" content="Mo-Fr {{opensweekday}}-{{closesweekday}}" /&gt;
+      </span>
+      <span style="display:none" class="monday">{
+        <br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="openingHours" content="Mo {{opensmonday}}-{{closesmonday}}" /&gt;
+      </span>
+      <span style="display:none" class="tuesday">
+        <br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="openingHours" content="Tu {{openstuesday}}-{{closestuesday}}" /&gt;
+      </span>
+      <span style="display:none" class="wednesday">
+        <br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="openingHours" content="Wed {{openswednesday}}-{{closeswednesday}}" /&gt;
+      </span>
+      <span style="display:none" class="thursday">
+        <br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="openingHours" content="Th {{opensthursday}}-{{closesthursday}}" /&gt;
+      </span>
+      <span style="display:none" class="friday">
+        <br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="openingHours" content="Fr {{opensfriday}}-{{closesfriday}}" /&gt;
+      </span>
+      <span style="display:none" class="saturday">
+        <br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="openingHours" content="Sa {{openssaturday}}-{{closessaturday}}" /&gt;
+      </span>
+      <span style="display:none" class="sunday">
+        <br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="openingHours" content="Su {{openssunday}}-{{closessunday}}" /&gt;
+      </span>
+      <span style="display:none" class="weekend">
+        <br>&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="openingHours" content="Sa-Su {{openswwkend}}-{{closesweekend}}" /&gt;
+      </span>
+    </span>
+    <!--address-->
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" &gt;
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="streetAddress"&gt;<span class="element">{{streetaddress}}</span>&lt;span&gt;
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="addressLocality"&gt;<span class="element">{{addresslocality}}</span>&lt;span&gt;
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="addressRegion"&gt;<span class="element">{{addressregion}}</span>&lt;span&gt;
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="postalCode"&gt;<span class="element">{{postalcode}}</span>&lt;span&gt;
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="addressCountry"&gt;<span class="element">{{addresscountry}}</span>&lt;span&gt;
+
+<br>&nbsp;   &lt;/div&gt;
+</p>
+
+
+
+
+
+
+<hr>
+
+<h4>More on Local Business Schema:</h4>
+<p>
+  <ul>
+    <li><a href="https://developers.google.com/search/docs/data-types/local-businesses">Google's Local Business Structured Data Documentation</a></li>
+    <li><a href="http://schema.org/LocalBusiness">Schema.org's Local Business Documentation</a></li>
+  </ul>
+</p>
 
 <script>
 $( document ).ready(function() {
@@ -163,6 +356,17 @@ $("#hasmap").click(function(){
 //#opening-hours #opening-hours-week
 $("#opening-hours").click(function(){
     $(".opening-hours-week").css("display","");
+    $(".opening-hours").css("display","");
+});
+
+//Weekday
+$("#weekday").click(function(){
+    $(".weekday").css("display","");
+});
+
+//Weekend
+$("#weekend").click(function(){
+    $(".weekend").css("display","");
 });
 
 //Monday
