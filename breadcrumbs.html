@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <title>Breadcrumb Schema Basic Template</title>
+
+  <!--AngularJs and Bootstrap-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!--jQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body class="container">
+  <style>
+      input {
+        margin-top: 1em;
+        height: 10 px;
+        font-size:12px;
+        width:80%;
+      }
+        p {
+          font-family:Courier;
+          font-size:1em;
+      }
+
+      .element {
+        font-style: bold;
+        background-color: #FFFF00;
+      }
+  </style>
+
+
+<h1>BreadcrumbList Schema</h1>
+<h4>Fill in the textbox below. The JSON-LD and Microdata below will update. Then copy the text and paste the following code into <a href="https://search.google.com/structured-data/testing-tool/u/0/">Google's Stuctured Data Testing Tool</a>!</h4>
+<!--Required markup input text boxes-->
+  <div class="center-block">
+
+  <!--urls/names-->
+    <input class="center-block" type="text" ng-model="id1" placeholder="#1st/Highest URL in Heirarchy (include http://)">
+            <input class="center-block" type="text" ng-model="name1" placeholder="Page #1's Name">
+            <span style="display:none" class="img1"><input class="center-block" type="text" ng-model="img1" placeholder="Page #1's Image"></span>
+
+    <input class="center-block" type="text" ng-model="id2" placeholder="#2nd URL in Heirarchy (include http://)">
+            <input class="center-block" type="text" ng-model="name2" placeholder="Page #2's Name">
+            <span style="display:none" class="img2"><input class="center-block" type="text" ng-model="img2" placeholder="Page #2's Image"></span>
+
+    <input class="center-block" type="text" ng-model="id3" placeholder="#3rd URL in Heirarchy (include http://)">
+            <input class="center-block" type="text" ng-model="name3" placeholder="Page #3's Name">
+            <span style="display:none" class="img3"><input class="center-block" type="text" ng-model="img3" placeholder="Page #3's Image"></span>
+
+<span style="display:none" class="listitem4">
+    <input class="center-block" type="text" ng-model="id4" placeholder="#4th URL in Heirarchy (include http://)">
+            <input class="center-block" type="text" ng-model="name4" placeholder="Page #4's Name">
+            <span style="display:none" class="img4"><input class="center-block" type="text" ng-model="img4" placeholder="Page #4's Image"></span>
+</span>
+
+<span style="display:none" class="listitem5">
+    <input class="center-block" type="text" ng-model="id5" placeholder="#5th URL in Heirarchy (include http://)"> 
+            <input class="center-block" type="text" ng-model="name5" placeholder="Page #5's Name">
+            <span style="display:none" class="img5"><input class="center-block" type="text" ng-model="img5" placeholder="Page #5's Image"></span>
+</span>
+
+  </div>
+
+<!--buttons-->
+  <!-- images -->
+<br>
+          <div class="row" style="text-align:center">
+                  <button type="button" id="img1" class="btn btn-warning btn-lg">+Image for URL #1</button>
+                  <button type="button" id="img2" class="btn btn-warning btn-lg">+Image for URL #2</button>
+                  <button type="button" id="img3" class="btn btn-warning btn-lg">+Image for URL #3</button>
+<span style="display:none" class="listitem4"><button type="button" id="img4" class="btn btn-warning btn-lg">+Image for URL #4</button></span>
+<span style="display:none" class="listitem5"><button type="button" id="img5" class="btn btn-warning btn-lg">+Image for URL #5</button></span>
+          </div>
+          <br>
+           <div class="row" style="text-align:center">
+                 <button type="button" id="listitem4" class="btn btn-primary btn-lg">+New List Item</button>
+                 <button type="button" id="listitem5" class="btn btn-primary btn-lg">+New List Item</button>
+            </div>
+  <!-- new list item -->
+
+
+<hr>
+<!--JSON-LD-->
+<h4>JSON-LD</h4>
+<p>
+    <br>&nbsp; &lt;script type="application/ld+json"&gt;
+    <br>&nbsp; {
+    <br>&nbsp;&nbsp;&nbsp;  "@context": "http://schema.org/",
+    <br>&nbsp;&nbsp;&nbsp;  "@type": "BreadcrumbList",
+    <br>&nbsp;&nbsp;&nbsp; "itemListElement": [{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ListItem",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "position": "1",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "item": {
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@id": "<span class="element">{{id1}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "name": "<span class="element">{{name1}}</span>"<span style="display:none" class="img1">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "image": "<span class="element">{{img1}}</span>"</span>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+    <br>&nbsp;&nbsp;&nbsp; },{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ListItem",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "position": "2",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "item": {
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@id": "<span class="element">{{id2}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "name": "<span class="element">{{name2}}</span>"<span style="display:none" class="img2">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "image": "<span class="element">{{img2}}</span>"</span>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+    <br>&nbsp;&nbsp;&nbsp; },{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ListItem",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "position": "3",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "item": {
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@id": "<span class="element">{{id3}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "name": "<span class="element">{{name3}}</span>"<span style="display:none" class="img3">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "image": "<span class="element">{{img3}}</span>"</span>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+    <br>&nbsp;&nbsp;&nbsp; }<span style="display:none" class="listitem4">,{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ListItem",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "position": "4",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "item": {
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@id": "<span class="element">{{id4}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "name": "<span class="element">{{name4}}</span>"<span style="display:none" class="img4">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "image": "<span class="element">{{img4}}</span>"</span>
+     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+    <br>&nbsp;&nbsp;&nbsp; }</span><span style="display:none" class="listitem5">,{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ListItem",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "position": "5",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "item": {
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@id": "<span class="element">{{id5}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "name": "<span class="element">{{name5}}</span>"<span style="display:none" class="img5">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "image": "<span class="element">{{img5}}</span>"</span>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+    <br>&nbsp;&nbsp;&nbsp; }</span>
+      <br>&nbsp;&nbsp;&nbsp; ]
+   <br>&nbsp;}
+<br>&nbsp; &lt;/script&gt;
+</p>
+
+
+<hr>
+<!--Microdata -->
+<h4>Microdata:</h4>
+<h5><b>Note:</b> This microdata is only a sample for demonstrative purposes. Microdata should be wrapped around elements within your HTML page.</h5>
+<p>
+<br>&nbsp; &lt;ol itemscope itemtype="http://schema.org/BreadcrumbList"&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" &gt;
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="position" content="1" /&gt;
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="<span class="element">{{id1}}</span>"&gt;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="name"&gt;<span class="element">{{name1}}</span>&lt;/span&gt;
+        <span style="display:none" class="img1"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;img itemprop="image" src="<span class="element">{{img1}}</span>"/&gt;</span>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;/a&gt;&lt;/li&gt; ›
+    <br>&nbsp;&nbsp;&nbsp;   &lt;li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" &gt;
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="position" content="2" /&gt;
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="<span class="element">{{id2}}</span>"&gt;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="name"&gt;<span class="element">{{name2}}</span>&lt;/span&gt;
+        <span style="display:none" class="img2"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;img itemprop="image" src="<span class="element">{{img2}}</span>"/&gt;</span>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;/a&gt;&lt;/li&gt; ›
+    <br>&nbsp;&nbsp;&nbsp;   &lt;li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" &gt;
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="position" content="3" /&gt;
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="<span class="element">{{id3}}</span>"&gt;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="name"&gt;<span class="element">{{name3}}</span>&lt;/span&gt;
+        <span style="display:none" class="img3"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;img itemprop="image" src="<span class="element">{{img3}}</span>"/&gt;</span>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;/a&gt;&lt;/li&gt;<span style="display:none" class="listitem4">›
+    <br>&nbsp;&nbsp;&nbsp;   &lt;li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" &gt;
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="position" content="4" /&gt;
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="<span class="element">{{id4}}</span>"&gt;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="name"&gt;<span class="element">{{name4}}</span>&lt;/span&gt;
+        <span style="display:none" class="img4"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;img itemprop="image" src="<span class="element">{{img4}}</span>"/&gt;</span>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;/a&gt;&lt;/li&gt;</span><span style="display:none" class="listitem5">›
+    <br>&nbsp;&nbsp;&nbsp;   &lt;li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" &gt;
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;meta itemprop="position" content="5" /&gt;
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="<span class="element">{{id5}}</span>"&gt;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;span itemprop="name"&gt;<span class="element">{{name5}}</span>&lt;/span&gt;
+        <span style="display:none" class="img5"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;img itemprop="image" src="<span class="element">{{img5}}</span>"/&gt;</span>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &lt;/a&gt;&lt;/li&gt;</span>
+<br>&nbsp; &lt;/ol&gt;
+</p>
+
+<hr>
+<h4>More on BreadcrumbList Schema:</h4>
+<p>
+  <ul>
+    <li><a href="https://developers.google.com/search/docs/data-types/breadcrumbs">Google's BreadcrumbList Structured Data Documentation</a></li>
+    <li><a href="http://schema.org/BreadcrumbList">Schema.org's BreadcrumbList Documentation</a></li>
+  </ul>
+</p>
+
+
+<script>
+$( document ).ready(function() {
+
+//listitems
+$("#listitem4").click(function(){
+    $(".listitem4").css("display","");
+});
+
+$("#listitem5").click(function(){
+    $(".listitem5").css("display","");
+});
+
+//images
+$("#img1").click(function(){
+    $(".img1").css("display","");
+});
+
+$("#img2").click(function(){
+    $(".img2").css("display","");
+});
+
+$("#img3").click(function(){
+    $(".img3").css("display","");
+});
+
+$("#img4").click(function(){
+    $(".img4").css("display","");
+});
+
+$("#img5").click(function(){
+    $(".img5").css("display","");
+});
+
+
+});//doc ready
+</script>
+
+</body>
+</html>
