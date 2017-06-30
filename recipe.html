@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <title>Recipe Schema Basic Template</title>
+
+  <!--AngularJs and Bootstrap-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!--jQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body class="container">
+  <style>
+      input {
+        margin-top: 1em;
+        height: 10 px;
+        font-size:12px;
+        width:80%;
+      }
+        p {
+          font-family:Courier;
+          font-size:1em;
+      }
+
+      .element {
+        font-style: bold;
+        background-color: #FFFF00;
+      }
+  </style>
+
+
+<h1>Recipe Schema</h1>
+<h4>Fill in the textbox below. The JSON-LD and Microdata below will update. Then copy the text and paste the following code into <a href="https://search.google.com/structured-data/testing-tool/u/0/">Google's Stuctured Data Testing Tool</a>!</h4>
+<!--Required markup input text boxes-->
+            <div class="center-block">
+
+              <input class="center-block" type="text" ng-model="name" placeholder="Recipe Name">
+              <input class="center-block" type="text" ng-model="image" placeholder="Image of Recipe (include http://)">
+              <input class="center-block" type="text" ng-model="description" placeholder="Description of Recipe">
+
+          <!--recipe category -->
+                 <br>
+                      <h4 style="text-align:center">Recipe Category:</h4>
+                      <select id="recipecategory" class="center-block" style="width:70%">
+                        <option value="Select Option">Select Option Below:</option>
+                        <option value="appetizer">appetizer</option>
+                        <option value="entree">entree</option>
+                        <option value="dessert">dessert</option>
+                      </select>
+
+
+          <!--Aggregate Rating Options - Hidden-->
+                <div class="aggregate-rating" style="display:none">
+                    <input class="center-block" type="text" ng-model="ratingvalue" placeholder="Average of all Ratings">
+                    <input class="center-block" type="text" ng-model="ratingcount" placeholder="# of Reviews">
+                    <input class="center-block" type="text" ng-model="bestrating" placeholder="Top potential rating score">
+                </div>
+
+          <!--author- hidden-->
+          <div class="author" style="display:none"><input class="center-block" type="text" ng-model="author" placeholder="Recipe Author"></div>
+
+          <!--prep time - hidden-->
+          <div class="preptime" style="display:none"><input class="center-block" type="text" ng-model="preptime" placeholder="Prep Time (ex., PT30M)"></div>
+
+          <!--cook time - hidden-->
+          <div class="cooktime" style="display:none"><input class="center-block" type="text" ng-model="cooktime" placeholder="Cook Time (ex., PT3H)"></div>
+
+          <!--total time - hidden-->
+          <div class="totaltime" style="display:none"><input class="center-block" type="text" ng-model="totaltime" placeholder="Total Time (ex., PT5H)"></div>
+
+          <!--recipe yield - hidden-->
+          <div class="recipeyield" style="display:none"><input class="center-block" type="text" ng-model="recipeyield" placeholder="How many people does this serve? (ex., 8)"></div>
+
+
+          <!--nutrition - hidden-->
+          <div class="calories" style="display:none"><input class="center-block" type="text" ng-model="calories" placeholder="Calories"></div>
+          <div class="servingsize" style="display:none"><input class="center-block" type="text" ng-model="servingsize" placeholder="Serving Size"></div>
+          <div class="fatcontent" style="display:none"><input class="center-block" type="text" ng-model="fatcontent" placeholder="Fat Content (in grams)"></div>
+          <div class="carbohydratecontent" style="display:none"><input class="center-block" type="text" ng-model="carbohydratecontent" placeholder="Carbohydrate Content (in grams)"></div>
+          <div class="fibercontent" style="display:none"><input class="center-block" type="text" ng-model="fibercontent" placeholder="Fiber Content (in grams)"></div>
+          <div class="proteincontent" style="display:none"><input class="center-block" type="text" ng-model="proteincontent" placeholder="Protein Content (in grams)"></div>
+          <div class="cholesterolcontent" style="display:none"><input class="center-block" type="text" ng-model="cholesterolcontent" placeholder="Cholesterol Content (in grams)"></div>
+          <div class="saturatedfatcontent" style="display:none"><input class="center-block" type="text" ng-model="saturatedfatcontent" placeholder="Saturated Fat Content (in grams)"></div>
+          <div class="sodiumcontent" style="display:none"><input class="center-block" type="text" ng-model="sodiumcontent" placeholder="Sodium Content (in milligrams)"></div>
+          <div class="sugarcontent" style="display:none"><input class="center-block" type="text" ng-model="sugarcontent" placeholder="Sugar Content (in grams)"></div>
+          <div class="transfatcontent" style="display:none"><input class="center-block" type="text" ng-model="transfatcontent" placeholder="Trans Fat Content (in grams)"></div>
+          <div class="unsaturatedfatcontent" style="display:none"><input class="center-block" type="text" ng-model="unsaturatedfatcontent" placeholder="Unsaturated Fat Content (in grams)"></div>
+
+          <!--dietary constraints category -->
+          <div class="suitablefordiet1" style="display:none;text-align:center">       
+                 <br>
+                     <h4>Fits the Following Diets:</h4>
+                      <select id="suitablefordiet" class="center-block" style="width:70%">
+                        <option value="Select Option">Select Option Below:</option>
+                        <option value="GlutenFreeDiet">Gluten Free Diet</option>
+                        <option value="HalalDiet">Halal Diet</option>
+                        <option value="HinduDiet">Hindu Diet</option>
+                        <option value="KosherDiet">Kosher Diet</option>
+                        <option value="LowCalorieDiet">Low Calorie Diet</option>
+                        <option value="LowFatDiet">Low Fat Diet</option>
+                        <option value="LowLactoseDiet">Low Lactose Diet</option>
+                        <option value="LowSaltDiet">Low Salt Diet</option>
+                        <option value="VeganDiet">Vegan Diet</option>
+                         <option value="VegetarianDiet">Vegetarian Diet</option>
+                      </select>
+          </div>
+          <!--recipe ingredients - hidden-->
+          <div class="ingredient1" style="display:none"><input class="center-block" type="text" ng-model="ingredient1" placeholder="Ingredient #1"></div>
+          <div class="ingredient2" style="display:none"><input class="center-block" type="text" ng-model="ingredient2" placeholder="Ingredient #2"></div>
+          <div class="ingredient3" style="display:none"><input class="center-block" type="text" ng-model="ingredient3" placeholder="Ingredient #3"></div>
+          <div class="ingredient4" style="display:none"><input class="center-block" type="text" ng-model="ingredient4" placeholder="Ingredient #4"></div>
+          <div class="ingredient5" style="display:none"><input class="center-block" type="text" ng-model="ingredient5" placeholder="Ingredient #5"></div>
+          <div class="ingredient6" style="display:none"><input class="center-block" type="text" ng-model="ingredient6" placeholder="Ingredient #6"></div>
+          <div class="ingredient7" style="display:none"><input class="center-block" type="text" ng-model="ingredient7" placeholder="Ingredient #7"></div>
+          <div class="ingredient8" style="display:none"><input class="center-block" type="text" ng-model="ingredient8" placeholder="Ingredient #8"></div>
+          <div class="ingredient9" style="display:none"><input class="center-block" type="text" ng-model="ingredient9" placeholder="Ingredient #9"></div>
+          <div class="ingredient10" style="display:none"><input class="center-block" type="text" ng-model="ingredient10" placeholder="Ingredient #10"></div>
+
+          <!--recipe instructions - hidden-->
+          <div class="instructions1" style="display:none"><input class="center-block" type="text" ng-model="instructions1" placeholder="Step #1"></div>
+          <div class="instructions2" style="display:none"><input class="center-block" type="text" ng-model="instructions2" placeholder="Step #2"></div>
+          <div class="instructions3" style="display:none"><input class="center-block" type="text" ng-model="instructions3" placeholder="Step #3"></div>
+          <div class="instructions4" style="display:none"><input class="center-block" type="text" ng-model="instructions4" placeholder="Step #4"></div>
+          <div class="instructions5" style="display:none"><input class="center-block" type="text" ng-model="instructions5" placeholder="Step #5"></div>
+          <div class="instructions6" style="display:none"><input class="center-block" type="text" ng-model="instructions6" placeholder="Step #6"></div>
+          <div class="instructions7" style="display:none"><input class="center-block" type="text" ng-model="instructions7" placeholder="Step #7"></div>
+          <div class="instructions8" style="display:none"><input class="center-block" type="text" ng-model="instructions8" placeholder="Step #8"></div>
+          <div class="instructions9" style="display:none"><input class="center-block" type="text" ng-model="instructions9" placeholder="Step #9"></div>
+          <div class="instructions10" style="display:none"><input class="center-block" type="text" ng-model="instructions10" placeholder="Step #10"></div>
+<!--buttons-->
+    <br><br>
+    <!-- other buttons -->
+<div class="row" style="text-align:center">
+    <button type="button" id="author" class="btn btn-primary btn-lg">+Recipe Author</button>
+    <button type="button" id="recipeyield" class="btn btn-primary btn-lg">+Recipe Yield</button>
+
+    <!-- timing buttons -->
+    <button type="button" id="preptime" class="btn btn-danger btn-lg">+Prep Time</button>
+    <button type="button" id="cooktime" class="btn btn-danger btn-lg">+Cook Time</button>
+    <button type="button" id="totaltime" class="btn btn-danger btn-lg">+Total Time</button>
+    <button type="button" id="nutrition" class="btn btn-success btn-lg">+Nutrition</button>
+</div>
+<!-- nutrition buttons -->
+<div style="display:none" class="nutrition">
+<br>
+    <div class="row" style="text-align:center">
+      <button type="button" id="calories" class="btn btn-success btn-md">+Calories</button>
+      <button type="button" id="servingsize" class="btn btn-success btn-md">+Serving Size</button>
+      <button type="button" id="fatcontent" class="btn btn-success btn-md">+Fat Content</button>
+      <button type="button" id="carbohydratecontent" class="btn btn-success btn-md">+Carbohydrate Content</button>
+      <button type="button" id="fibercontent" class="btn btn-success btn-md">+Fiber Content</button>
+      <button type="button" id="proteincontent" class="btn btn-success btn-md">+Protein Content</button>
+      <button type="button" id="cholesterolcontent" class="btn btn-success btn-md">+Cholesterol Content</button>
+    </div>
+<br>
+    <div class="row" style="text-align:center">
+      <button type="button" id="saturatedfatcontent" class="btn btn-success btn-md">+Saturated Fat Content</button>
+      <button type="button" id="sodiumcontent" class="btn btn-success btn-md">+Sodium Content</button>
+      <button type="button" id="sugarcontent" class="btn btn-success btn-md">+Sugar Content</button>
+      <button type="button" id="transfatcontent" class="btn btn-success btn-md">+Trans Fat Content</button>
+      <button type="button" id="unsaturatedfatcontent" class="btn btn-success btn-md">+Unsaturated Fat Content</button>
+
+    <!--dietary constraints category -->
+      <button type="button" id="suitablefordiet1" class="btn btn-success btn-md">+Suitable for Diet</button>
+    </div>
+</div>
+
+  <br>
+    <!--ingredient buttons -->
+    <div class="row" style="text-align:center">
+        <button type="button" id="ingredient1" class="btn btn-info btn-sm">+Ingredient #1</button>
+        <button type="button" id="ingredient2" class="btn btn-info btn-sm">+Ingredient #2</button>
+        <button type="button" id="ingredient3" class="btn btn-info btn-sm">+Ingredient #3</button>
+        <button type="button" id="ingredient4" class="btn btn-info btn-sm">+Ingredient #4</button>
+        <button type="button" id="ingredient5" class="btn btn-info btn-sm">+Ingredient #5</button>
+        <button type="button" id="ingredient6" class="btn btn-info btn-sm">+Ingredient #6</button>
+        <button type="button" id="ingredient7" class="btn btn-info btn-sm">+Ingredient #7</button>
+        <button type="button" id="ingredient8" class="btn btn-info btn-sm">+Ingredient #8</button>
+        <button type="button" id="ingredient9" class="btn btn-info btn-sm">+Ingredient #9</button>
+        <button type="button" id="ingredient10" class="btn btn-info btn-sm">+Ingredient #10</button>
+    </div>
+    <br>
+    <!-- instructions buttons -->
+    <div class="row" style="text-align:center">
+        <button type="button" id="instructions1" class="btn btn-warning btn-sm">+Instructions #1</button>
+        <button type="button" id="instructions2" class="btn btn-warning btn-sm">+Instructions #2</button>
+        <button type="button" id="instructions3" class="btn btn-warning btn-sm">+Instructions #3</button>
+        <button type="button" id="instructions4" class="btn btn-warning btn-sm">+Instructions #4</button>
+        <button type="button" id="instructions5" class="btn btn-warning btn-sm">+Instructions #5</button>
+        <button type="button" id="instructions6" class="btn btn-warning btn-sm">+Instructions #6</button>
+        <button type="button" id="instructions7" class="btn btn-warning btn-sm">+Instructions #7</button>
+        <button type="button" id="instructions8" class="btn btn-warning btn-sm">+Instructions #8</button>
+        <button type="button" id="instructions9" class="btn btn-warning btn-sm">+Instructions #9</button>
+        <button type="button" id="instructions10" class="btn btn-warning btn-sm">+Instructions #10</button>
+    </div>
+<br>
+
+
+
+<hr>
+<!--JSON-LD-->
+<h4>JSON-LD</h4>
+<p>
+    <br>&nbsp; &lt;script type="application/ld+json"&gt;
+    <br>&nbsp; {
+    <br>&nbsp;&nbsp;&nbsp;  "@context": "http://schema.org/",
+    <br>&nbsp;&nbsp;&nbsp;  "@type": "Recipe",
+    <br>&nbsp;&nbsp;&nbsp;  "name": "<span class="element">{{name}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "image": "<span class="element">{{image}}</span>",
+    <br>&nbsp;&nbsp;&nbsp;  "description": "<span class="element">{{description}}</span>",
+
+<!-- Aggregate Rating -->
+      <span style="display:none" class="aggregate-rating">
+        <br>&nbsp;&nbsp;&nbsp; "aggregateRating": {
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "AggregateRating",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "ratingValue": "<span class="element">{{ratingvalue}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "reviewCount": "<span class="element">{{ratingcount}}</span>",
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "bestRating": "<span class="element">{{bestrating}}</span>"
+        <br>&nbsp;&nbsp;&nbsp;  },
+      </span>
+
+<!--author -->
+<span style="display:none" class="author"><br>&nbsp;&nbsp;&nbsp; "author": "<span class="element">{{author}}</span>",</span>
+
+<!--recipe yield -->
+<span style="display:none" class="recipeyield"><br>&nbsp;&nbsp;&nbsp; "recipeYield": <span class="element">{{recipeyield}}</span>,</span>
+
+<!--preptime -->
+<span style="display:none" class="preptime"><br>&nbsp;&nbsp;&nbsp; "prepTime": "<span class="element">{{preptime}}</span>",</span>
+
+<!--cooktime -->
+<span style="display:none" class="cooktime"><br>&nbsp;&nbsp;&nbsp; "cookTime": "<span class="element">{{cooktime}}</span>",</span>
+
+<!--totaltime -->
+<span style="display:none" class="totaltime"><br>&nbsp;&nbsp;&nbsp; "totalTime": "<span class="element">{{totaltime}}</span>",</span>
+
+<!--recipe ingredient -->
+<span style="display:none" class="ingredient1">
+    <br>&nbsp;&nbsp;&nbsp; "recipeIngredient": [
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">{{ingredient1}}</span>"<span style="display:none" class="ingredient2">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">{{ingredient2}}</span>"</span><span style="display:none" class="ingredient3">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">{{ingredient3}}</span>"</span><span style="display:none" class="ingredient4">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">{{ingredient4}}</span>"</span><span style="display:none" class="ingredient5">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">{{ingredient5}}</span>"</span><span style="display:none" class="ingredient6">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">{{ingredient6}}</span>"</span><span style="display:none" class="ingredient7">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">{{ingredient7}}</span>"</span><span style="display:none" class="ingredient8">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">{{ingredient8}}</span>"</span><span style="display:none" class="ingredient9">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">{{ingredient9}}</span>"</span><span style="display:none" class="ingredient10">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">{{ingredient10}}</span>"</span>
+    <br>&nbsp;&nbsp;&nbsp; ],
+</span>
+
+<!--recipe instructions -->
+<span style="display:none" class="instructions1">
+    <br>&nbsp;&nbsp;&nbsp; "recipeInstructions": [
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">1. {{instructions1}}</span>"<span style="display:none" class="instructions2">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">2. {{instructions2}}</span>"</span><span style="display:none" class="instructions3">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">3. {{instructions3}}</span>"</span><span style="display:none" class="instructions4">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">4. {{instructions4}}</span>"</span><span style="display:none" class="instructions5">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">5. {{instructions5}}</span>"</span><span style="display:none" class="instructions6">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">6. {{instructions6}}</span>"</span><span style="display:none" class="instructions7">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">7. {{instructions7}}</span>"</span><span style="display:none" class="instructions8">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">8. {{instructions8}}</span>"</span><span style="display:none" class="instructions9">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">9. {{instructions9}}</span>"</span><span style="display:none" class="instructions10">,
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="element">10. {{instructions10}}</span>"</span>
+    <br>&nbsp;&nbsp;&nbsp; ],
+</span>
+
+<!--nutrition - hidden-->
+<span style="display:none" class="nutrition">
+    <br>&nbsp;&nbsp;&nbsp; "nutrition": {
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "@type": "NutritionInformation",
+
+        <span style="display:none" class="calories"><br>&nbsp;&nbsp;&nbsp;&nbsp; "calories": "<span class="element">{{calories}}</span>"</span><span style="display:none" class="fatcontent">,
+          <br>&nbsp;&nbsp;&nbsp;&nbsp; "fatContent": "<span class="element">{{fatcontent}}</span>"</span><span style="display:none" class="carbohydratecontent">,
+          <br>&nbsp;&nbsp;&nbsp;&nbsp; "carbohydrateContent": "<span class="element">{{carbohydratecontent}}</span>"</span><span style="display:none" class="fibercontent">,
+          <br>&nbsp;&nbsp;&nbsp;&nbsp; "fiberContent": "<span class="element">{{fibercontent}}</span>"</span><span style="display:none" class="proteincontent">,
+          <br>&nbsp;&nbsp;&nbsp;&nbsp; "proteinContent": "<span class="element">{{proteincontent}}</span>"</span><span style="display:none" class="saturatedfatcontent">,
+          <br>&nbsp;&nbsp;&nbsp;&nbsp; "saturatedFatContent": "<span class="element">{{saturatedfatcontent}}</span>"</span><span style="display:none" class="servingsize">,
+          <br>&nbsp;&nbsp;&nbsp;&nbsp; "servingSize": "<span class="element">{{servingsize}}</span>"</span><span style="display:none" class="sodiumcontent">,
+          <br>&nbsp;&nbsp;&nbsp;&nbsp; "sodiumContent": "<span class="element">{{sodiumcontent}}</span>"</span><span style="display:none" class="sugarcontent">,
+          <br>&nbsp;&nbsp;&nbsp;&nbsp; "sugarContent": "<span class="element">{{sugarcontent}}</span>"</span><span style="display:none" class="transfatcontent">,
+          <br>&nbsp;&nbsp;&nbsp;&nbsp; "transFatContent": "<span class="element">{{transfatcontent}}</span>"</span><span style="display:none" class="unsaturatedfatcontent">,
+          <br>&nbsp;&nbsp;&nbsp;&nbsp; "unsaturatedFatContent": "<span class="element">{{unsaturatedfatcontent}}</span>"</span>
+    <br>&nbsp;&nbsp;&nbsp; },
+</span>
+
+<!--suitable for diet -->
+<span style="display:none" class="GlutenFreeDiet"><br>&nbsp;&nbsp;&nbsp; "suitableForDiet": "<span class="element">http://schema.org/GlutenFreeDiet</span>",</span>
+<span style="display:none" class="HalalDiet"><br>&nbsp;&nbsp;&nbsp; "suitableForDiet": "<span class="element">http://schema.org/HalalDiet</span>",</span>
+<span style="display:none" class="HinduDiet"><br>&nbsp;&nbsp;&nbsp; "suitableForDiet": "<span class="element">http://schema.org/HinduDiet</span>",</span>
+<span style="display:none" class="KosherDiet"><br>&nbsp;&nbsp;&nbsp; "suitableForDiet": "<span class="element">http://schema.org/KosherDiet</span>",</span>
+<span style="display:none" class="LowCalorieDiet"><br>&nbsp;&nbsp;&nbsp; "suitableForDiet": "<span class="element">http://schema.org/LowCalorieDiet</span>",</span>
+<span style="display:none" class="LowFatDiet"><br>&nbsp;&nbsp;&nbsp; "suitableForDiet": "<span class="element">http://schema.org/LowFatDiet</span>",</span>
+<span style="display:none" class="LowLactoseDiet"><br>&nbsp;&nbsp;&nbsp; "suitableForDiet": "<span class="element">http://schema.org/LowLactoseDiet</span>",</span>
+<span style="display:none" class="LowSaltDiet"><br>&nbsp;&nbsp;&nbsp; "suitableForDiet": "<span class="element">http://schema.org/LowSaltDiet</span>",</span>
+<span style="display:none" class="VeganDiet"><br>&nbsp;&nbsp;&nbsp; "suitableForDiet": "<span class="element">http://schema.org/VeganDiet</span>",</span>
+<span style="display:none" class="VegetarianDiet"><br>&nbsp;&nbsp;&nbsp; "suitableForDiet": "<span class="element">http://schema.org/VegetarianDiet</span>",</span>
+
+<!--end of markup-->
+  <!--recipe category -->
+    <br>&nbsp;&nbsp;&nbsp;  "recipeCategory": "<span class="element"><span style="display:none" class="appetizer">appetizer</span><span style="display:none" class="entree">entree</span><span style="display:none" class="dessert">dessert</span></span>"
+
+   <br>&nbsp;}
+<br>&nbsp; &lt;/script&gt;
+</p>
+
+
+<hr>
+<h4>More on Recipe Schema:</h4>
+<p>
+  <ul>
+    <li><a href="https://developers.google.com/search/docs/data-types/recipes">Google's Recipe Structured Data Documentation</a></li>
+    <li><a href="http://schema.org/Recipe">Schema.org's Recipe Documentation</a></li>
+  </ul>
+</p>
+
+
+<script>
+$( document ).ready(function() {
+//nutrition
+$("#nutrition").click(function(){
+    $(".nutrition").css("display","");
+});
+
+
+//Aggregate rating
+$("#aggregate-rating-button").click(function(){
+    $(".aggregate-rating").css("display","");
+});
+
+//author
+$("#author").click(function(){
+    $(".author").css("display","");
+});
+
+//recipe category
+$(function () {
+    $("#recipecategory").change(function() {
+      var val = $(this).val();
+      if(val === "appetizer") {
+          $(".entree").css("display","none");
+          $(".dessert").css("display","none");
+
+          $(".appetizer").css("display","");
+      } else if (val === "entree") {
+           $(".appetizer").css("display","none");
+          $(".dessert").css("display","none");
+
+          $(".entree").css("display","");
+        } else if (val === "dessert") {
+          $(".appetizer").css("display","none");
+          $(".entree").css("display","none");
+
+            $(".dessert").css("display","");
+          }
+
+    });
+});
+
+//time
+$("#preptime").click(function(){
+    $(".preptime").css("display","");
+});
+
+$("#cooktime").click(function(){
+    $(".cooktime").css("display","");
+});
+
+$("#totaltime").click(function(){
+    $(".totaltime").css("display","");
+});
+
+//yield
+$("#recipeyield").click(function(){
+    $(".recipeyield").css("display","");
+});
+
+//ingredients
+$("#ingredient1").click(function(){
+    $(".ingredient1").css("display","");
+});
+$("#ingredient2").click(function(){
+    $(".ingredient2").css("display","");
+});
+$("#ingredient3").click(function(){
+    $(".ingredient3").css("display","");
+});
+$("#ingredient4").click(function(){
+    $(".ingredient4").css("display","");
+});
+$("#ingredient5").click(function(){
+    $(".ingredient5").css("display","");
+});
+$("#ingredient6").click(function(){
+    $(".ingredient6").css("display","");
+});
+$("#ingredient7").click(function(){
+    $(".ingredient7").css("display","");
+});
+$("#ingredient8").click(function(){
+    $(".ingredient8").css("display","");
+});
+$("#ingredient9").click(function(){
+    $(".ingredient9").css("display","");
+});
+$("#ingredient10").click(function(){
+    $(".ingredient10").css("display","");
+});
+
+//instructions
+$("#instructions1").click(function(){
+    $(".instructions1").css("display","");
+});
+$("#instructions2").click(function(){
+    $(".instructions2").css("display","");
+});
+$("#instructions3").click(function(){
+    $(".instructions3").css("display","");
+});
+$("#instructions4").click(function(){
+    $(".instructions4").css("display","");
+});
+$("#instructions5").click(function(){
+    $(".instructions5").css("display","");
+});
+$("#instructions6").click(function(){
+    $(".instructions6").css("display","");
+});
+$("#instructions7").click(function(){
+    $(".instructions7").css("display","");
+});
+$("#instructions8").click(function(){
+    $(".instructions8").css("display","");
+});
+$("#instructions9").click(function(){
+    $(".instructions9").css("display","");
+});
+$("#instructions10").click(function(){
+    $(".instructions10").css("display","");
+});
+
+
+//nutrition
+$("#calories").click(function(){
+    $(".calories").css("display","");
+});
+$("#calories").click(function(){
+    $(".calories").css("display","");
+});
+$("#calories").click(function(){
+    $(".calories").css("display","");
+});
+
+$("#calories").click(function(){
+    $(".calories").css("display","");
+});
+$("#servingsize").click(function(){
+    $(".servingsize").css("display","");
+});
+
+$("#fatcontent").click(function(){
+    $(".fatcontent").css("display","");
+});
+
+$("#carbohydratecontent").click(function(){
+    $(".carbohydratecontent").css("display","");
+});
+
+$("#fibercontent").click(function(){
+    $(".fibercontent").css("display","");
+});
+
+$("#proteincontent").click(function(){
+    $(".proteincontent").css("display","");
+});
+$("#cholesterolcontent").click(function(){
+    $(".cholesterolcontent").css("display","");
+});
+$("#saturatedfatcontent").click(function(){
+    $(".saturatedfatcontent").css("display","");
+});
+$("#sodiumcontent").click(function(){
+    $(".sodiumcontent").css("display","");
+});
+$("#sugarcontent").click(function(){
+    $(".sugarcontent").css("display","");
+});
+$("#transfatcontent").click(function(){
+    $(".transfatcontent").css("display","");
+});
+$("#unsaturatedfatcontent").click(function(){
+    $(".unsaturatedfatcontent").css("display","");
+});
+
+//suitable for diet
+$("#suitablefordiet1").click(function(){
+    $(".suitablefordiet1").css("display","");
+});
+
+$(function () {
+    $("#suitablefordiet").change(function() {
+      var val = $(this).val();
+      if(val === "GlutenFreeDiet") {
+          $(".GlutenFreeDiet").css("display","");
+      } else if (val === "HalalDiet") {
+          $(".HalalDiet").css("display","");
+        } else if (val === "HinduDiet") {
+            $(".HinduDiet").css("display","");
+          } else if (val === "KosherDiet") {
+              $(".KosherDiet").css("display","");
+            } else if (val === "LowCalorieDiet") {
+                $(".LowCalorieDiet").css("display","");
+              } else if (val === "LowFatDiet") {
+                  $(".LowFatDiet").css("display","");
+                } else if (val === "LowLactoseDiet") {
+                    $(".LowLactoseDiet").css("display","");
+                  } else if (val === "LowSaltDiet") {
+                      $(".LowSaltDiet").css("display","");
+                    } else if (val === "VeganDiet") {
+                        $(".VeganDiet").css("display","");
+                      } else if (val === "VegetarianDiet") {
+                        $(".VegetarianDiet").css("display","");
+                      }
+
+    });
+  });
+
+
+
+             
+});//doc ready
+</script>
+
+</body>
+</html>
