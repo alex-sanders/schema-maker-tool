@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Article Schema Basic Template</title>
+<link rel="shortcut icon" type="image/png" href="/structured-data/lego.png"/>
 
   <!--AngularJs and Bootstrap-->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
@@ -56,6 +57,7 @@
     <input class="center-block" type="text" ng-model="heightlogo" placeholder="Logos's Height (required for AMP pages)">
     <input class="center-block" type="text" ng-model="widthlogo" placeholder="Logo's Width (required for AMP pages)">
        <br>
+     <h4>Select Author Type:</h4>
             <select id="author" class="center-block" style="width:70%">
               <option value="Select Option">Select Option Below:</option>
               <option value="person">Person</option>
@@ -85,7 +87,7 @@
     <br>&nbsp;&nbsp;&nbsp;  "description": "<span class="element">{{description}}</span>",
     <br>&nbsp;&nbsp;&nbsp;  "mainEntityOfPage": {
         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "WebPage",
-        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@id": "<span class="element">{{url}}</span>",
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@id": "<span class="element">{{url}}</span>"
     <br>&nbsp;&nbsp;&nbsp; },
     <br>&nbsp;&nbsp;&nbsp;  "image": {
         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ImageObject",
@@ -120,7 +122,7 @@
 <h5><b>Note:</b> This microdata is only a sample for demonstrative purposes. Microdata should be wrapped around elements within your HTML page.</h5>
 <p>
 <br>&nbsp; &lt;div itemscope itemtype="http://schema.org/Article"&gt;
-    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="headline"&gt;<span class="element">{{headline}}</span>&lt;span&gt;
+    <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="headline"&gt;<span class="element">{{headline}}</span>&lt;/span&gt;
     <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="description"&gt;<span class="element">{{description}}</span>&lt;span&gt;
 
     <br>&nbsp;&nbsp;&nbsp;   &lt;span itemprop="mainEntityOfPage" itemscope itemtype="http://schema.org/WebPage" &gt;
