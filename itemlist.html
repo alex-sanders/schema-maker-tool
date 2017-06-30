@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <title>ItemList/Carousel Schema Basic Template</title>
+
+  <!--AngularJs and Bootstrap-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!--jQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body class="container">
+  <style>
+      input {
+        margin-top: 1em;
+        height: 10 px;
+        font-size:12px;
+        width:80%;
+      }
+        p {
+          font-family:Courier;
+          font-size:1em;
+      }
+
+      .element {
+        font-style: bold;
+        background-color: #FFFF00;
+      }
+  </style>
+
+
+<h1>ItemList Schema (Carousel)</h1>
+<h4>Fill in the textbox below. The JSON-LD and Microdata below will update. Then copy the text and paste the following code into <a href="https://search.google.com/structured-data/testing-tool/u/0/">Google's Stuctured Data Testing Tool</a>!</h4>
+<!--Required markup input text boxes-->
+  <div class="center-block">
+
+  <!--What type of elements are within this list -->
+       <br>
+            <select id="listitemtype" class="center-block" style="width:70%">
+              <option value="Select Option">Select Option Below:</option>
+              <option value="thing">Generic List of Things</option>
+              <option value="product">List of Products</option>
+              <option value="article">List of Articles</option>
+              <option value="event">List of Events</option>
+              <option value="place">List of Places</option>
+              <option value="musicrecording">List of Songs</option>
+              <option value="musicgroup">List of Music Artists</option>
+
+            </select>
+
+  <!--urls/names-->
+    <input class="center-block" type="text" ng-model="name" placeholder="Name of List">
+
+    <input class="center-block" type="text" ng-model="name1" placeholder="#1st/Highest Item in List">
+        <input class="center-block" type="text" ng-model="id1" placeholder="#1st Item's URL">
+
+    <input class="center-block" type="text" ng-model="name2" placeholder="#2nd Item in List">
+        <input class="center-block" type="text" ng-model="id2" placeholder="#2nd Item's URL">
+
+    <input class="center-block" type="text" ng-model="name3" placeholder="#3rd Item in List">
+        <input class="center-block" type="text" ng-model="id3" placeholder="#3rd Item's URL">
+
+
+
+<span style="display:none" class="listitem4">
+    <input class="center-block" type="text" ng-model="name4" placeholder="#4th Item in List">
+        <input class="center-block" type="text" ng-model="id4" placeholder="#4th Item's URL">
+</span>
+
+<span style="display:none" class="listitem5">
+    <input class="center-block" type="text" ng-model="name5" placeholder="#5th Item in List"> 
+        <input class="center-block" type="text" ng-model="id5" placeholder="#5th Item's URL">
+</span>
+
+
+<!--item list order-->
+<span style="display:none" class="itemlistorder">
+       <br>
+            <select id="itemlistorder2" class="center-block" style="width:70%">
+              <option value="Select Option">Select Option Below:</option>
+              <option value="itemlistorderdescending">Item List Order Descending</option>
+              <option value="itemlistorderascending">Item List Order Ascending</option>
+              <option value="itemlistorderunordered">Item List Order Unordered</option>
+            </select>
+</span>
+
+
+<!--# of items-->
+<span style="display:none" class="numberofitems">
+    <input class="center-block" type="text" ng-model="numberofitems" placeholder="Number of Items"> 
+</span>
+
+  </div>
+
+<!--buttons-->
+<br>
+           <div class="row" style="text-align:center">
+                 <button type="button" id="listitem4" class="btn btn-primary btn-lg">+New Item List Element</button>
+                 <button type="button" id="listitem5" class="btn btn-primary btn-lg">+New Item List Element</button>
+                 <button type="button" id="itemlistorder" class="btn btn-primary btn-lg">+Item List Order</button>
+                 <button type="button" id="numberofitems" class="btn btn-primary btn-lg">+Number of Items</button>
+            </div>
+  <!-- new list item -->
+
+
+<hr>
+<!--JSON-LD-->
+<h4>JSON-LD</h4>
+<p>
+    <br>&nbsp; &lt;script type="application/ld+json"&gt;
+    <br>&nbsp; {
+    <br>&nbsp;&nbsp;&nbsp;  "@context": "http://schema.org/",
+    <br>&nbsp;&nbsp;&nbsp;  "@type": "ItemList",
+    <br>&nbsp;&nbsp;&nbsp;  "name": "<span class="element">{{name}}</span>",
+
+<!--# of items -->
+<span style="display:none" class="numberofitems"><br>&nbsp;&nbsp;&nbsp; "numberOfItems": "<span class="element">{{numberofitems}}</span>",</span>
+
+<!--List Order -->
+<span style="display:none" class="itemlistorderdescending"><br>&nbsp;&nbsp;&nbsp; "itemListOrder": "<span class="element">http://schema.org/ItemListOrderDescending</span>",</span>
+<span style="display:none" class="itemlistorderascending"><br>&nbsp;&nbsp;&nbsp; "itemListOrder": "<span class="element">http://schema.org/ItemListOrderAscending</span>",</span>
+<span style="display:none" class="itemlistorderunordered"><br>&nbsp;&nbsp;&nbsp; "itemListOrder": "<span class="element">http://schema.org/ItemListOrderUnordered</span>",</span>
+
+<!--List-->
+    <br>&nbsp;&nbsp;&nbsp; "itemListElement": [{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ListItem",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "position": "1",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "item": {
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "<span class="element"><span style="display:none" class="thing">Thing</span><span style="display:none" class="product">Product</span><span style="display:none" class="article">Article</span><span style="display:none" class="event">Event</span><span style="display:none" class="place">Place</span><span style="display:none" class="musicrecording">MusicRecording</span><span style="display:none" class="musicgroup">MusicGroup</span></span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "url": "<span class="element">{{id1}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "name": "<span class="element">{{name1}}</span>"
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+    <br>&nbsp;&nbsp;&nbsp; },{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ListItem",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "position": "2",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "item": {
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "<span class="element"><span style="display:none" class="thing">Thing</span><span style="display:none" class="product">Product</span><span style="display:none" class="article">Article</span><span style="display:none" class="event">Event</span><span style="display:none" class="place">Place</span><span style="display:none" class="musicrecording">MusicRecording</span><span style="display:none" class="musicgroup">MusicGroup</span></span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "url": "<span class="element">{{id2}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "name": "<span class="element">{{name2}}</span>"
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+    <br>&nbsp;&nbsp;&nbsp; },{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ListItem",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "position": "3",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "item": {
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "<span class="element"><span style="display:none" class="thing">Thing</span><span style="display:none" class="product">Product</span><span style="display:none" class="article">Article</span><span style="display:none" class="event">Event</span><span style="display:none" class="place">Place</span><span style="display:none" class="musicrecording">MusicRecording</span><span style="display:none" class="musicgroup">MusicGroup</span></span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "url": "<span class="element">{{id3}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "name": "<span class="element">{{name3}}</span>"
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+    <br>&nbsp;&nbsp;&nbsp; }<span style="display:none" class="listitem4">,{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ListItem",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "position": "4",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "item": {
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "<span class="element"><span style="display:none" class="thing">Thing</span><span style="display:none" class="product">Product</span><span style="display:none" class="article">Article</span><span style="display:none" class="event">Event</span><span style="display:none" class="place">Place</span><span style="display:none" class="musicrecording">MusicRecording</span><span style="display:none" class="musicgroup">MusicGroup</span></span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "url": "<span class="element">{{id4}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "name": "<span class="element">{{name4}}</span>"
+     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+    <br>&nbsp;&nbsp;&nbsp; }</span><span style="display:none" class="listitem5">,{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "ListItem",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "position": "5",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    "item": {
+     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "@type": "<span class="element"><span style="display:none" class="thing">Thing</span><span style="display:none" class="product">Product</span><span style="display:none" class="article">Article</span><span style="display:none" class="event">Event</span><span style="display:none" class="place">Place</span><span style="display:none" class="musicrecording">MusicRecording</span><span style="display:none" class="musicgroup">MusicGroup</span></span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "url": "<span class="element">{{id5}}</span>",
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   "name": "<span class="element">{{name5}}</span>"
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+    <br>&nbsp;&nbsp;&nbsp; }</span>
+      <br>&nbsp;&nbsp;&nbsp; ]
+   <br>&nbsp;}
+<br>&nbsp; &lt;/script&gt;
+</p>
+
+
+<hr>
+<h4>More on ItemList Schema:</h4>
+<p>
+  <ul>
+    <li><a href="https://developers.google.com/search/docs/guides/mark-up-listings">Google's List/Carousel Structured Data Documentation</a></li>
+    <li><a href="https://developers.google.com/gmail/markup/reference/types/ItemList">Google's ItemList Structured Data Documentation</a></li>
+    <li><a href="http://schema.org/ItemList">Schema.org's ItemList Documentation</a></li>
+  </ul>
+</p>
+
+
+<script>
+$( document ).ready(function() {
+
+//extra list items
+$("#listitem4").click(function(){
+    $(".listitem4").css("display","");
+});
+
+$("#listitem5").click(function(){
+    $(".listitem5").css("display","");
+});
+
+//order
+$("#itemlistorder").click(function(){
+    $(".itemlistorder").css("display","");
+});
+
+//#of items
+$("#numberofitems").click(function(){
+    $(".numberofitems").css("display","");
+});
+
+
+//List Item Type -- > Update JSON-LD when option is selected
+  $(function () {
+    $("#listitemtype").change(function() {
+      var val = $(this).val();
+      if(val === "thing") {
+          $(".product").css("display","none");
+          $(".article").css("display","none");
+          $(".event").css("display","none");
+          $(".place").css("display","none");
+          $(".musicrecording").css("display","none");
+          $(".musicgroup").css("display","none");
+
+          $(".thing").css("display","");
+      } else if (val === "product") {
+          $(".thing").css("display","none");
+          $(".article").css("display","none");
+          $(".event").css("display","none");
+          $(".place").css("display","none");
+          $(".musicrecording").css("display","none");
+          $(".musicgroup").css("display","none");
+
+          $(".product").css("display","");
+        } else if (val === "article") {
+          $(".thing").css("display","none");
+          $(".product").css("display","none");
+          $(".event").css("display","none");
+          $(".place").css("display","none");
+          $(".musicrecording").css("display","none");
+          $(".musicgroup").css("display","none");
+
+            $(".article").css("display","");
+          } else if (val === "event") {
+          $(".thing").css("display","none");
+          $(".product").css("display","none");
+          $(".article").css("display","none");
+          $(".place").css("display","none");
+          $(".musicrecording").css("display","none");
+          $(".musicgroup").css("display","none");
+
+              $(".event").css("display","");
+            } else if (val === "place") {
+          $(".thing").css("display","none");
+          $(".product").css("display","none");
+          $(".article").css("display","none");
+          $(".event").css("display","none");
+          $(".musicrecording").css("display","none");
+          $(".musicgroup").css("display","none");
+
+                $(".place").css("display","");
+              } else if (val === "musicrecording") {
+           $(".thing").css("display","none");
+          $(".product").css("display","none");
+          $(".article").css("display","none");
+          $(".event").css("display","none");
+          $(".place").css("display","none");
+          $(".musicgroup").css("display","none");
+
+                  $(".musicrecording").css("display","");
+                } else if (val === "musicgroup") {
+          $(".thing").css("display","none");
+          $(".product").css("display","none");
+          $(".article").css("display","none");
+          $(".event").css("display","none");
+          $(".place").css("display","none");
+          $(".musicrecording").css("display","none");
+                    $(".musicgroup").css("display","");
+                  } 
+    });
+  });
+
+  $(function () {
+    $("#itemlistorder2").change(function() {
+      var val = $(this).val();
+      if(val === "itemlistorderdescending") {
+          $(".itemlistorderascending").css("display","none");
+          $(".itemlistorderunordered").css("display","none");
+
+          $(".itemlistorderdescending").css("display","");
+      } else if (val === "itemlistorderascending") {
+         $(".itemlistorderdescending").css("display","none");
+          $(".itemlistorderunordered").css("display","none");
+
+          $(".itemlistorderascending").css("display","");
+        } else if (val === "itemlistorderunordered") {
+          $(".itemlistorderdescending").css("display","none");
+          $(".itemlistorderascending").css("display","none");
+
+            $(".itemlistorderunordered").css("display","");
+          } 
+    });
+  });
+             
+});//doc ready
+</script>
+
+</body>
+</html>
